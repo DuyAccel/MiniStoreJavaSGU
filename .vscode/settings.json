@@ -1,0 +1,9 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "d:\\SQL\\sqljdbc_10.2\\enu\\mssql-jdbc-10.2.0.jre17.jar",
+        "d:\\Code\\JAVA\\poi-5.0.0.jar"
+    ]
+}
