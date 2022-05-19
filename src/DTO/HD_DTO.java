@@ -12,6 +12,11 @@ public class HD_DTO {
         this.manv = manv;
         this.tongtien = tongtien;
     }
+
+    public HD_DTO(String mahd){
+        this.mahd = mahd;
+        
+    }
     public String getMahd() {
         return mahd;
     }

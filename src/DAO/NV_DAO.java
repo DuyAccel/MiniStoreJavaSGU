@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  * @author Paul
  */
 public class NV_DAO {
-    private final String URL="jdbc:sqlserver://localhost:1433; DatabaseName=QLCHMINI;trustServerCertificate=true" ;
+    private final String URL="jdbc:sqlserver://localhost:1433; DatabaseName=MiniStore;trustServerCertificate=true" ;
     private final String User="duy"; 
     private final String Password="123";
    private ArrayList<NV_DTO>listnv=new ArrayList<>();

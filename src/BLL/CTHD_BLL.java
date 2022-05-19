@@ -5,8 +5,9 @@
 package BLL;
 
 import DAO.CTHD_DAO;
+import DAO.HD_DAO;
 import DTO.CTHD_DTO;
-import DTO.SP_DTO;
+import DTO.HD_DTO;
 import java.util.ArrayList;
 
 /**
@@ -22,10 +23,5 @@ public class CTHD_BLL {
         num=cthddao.MAHD();
         return num;
     }
-    public void Save(CTHD_DTO chdto,ArrayList<SP_DTO> listsp)
-    {
-        cthddao=new CTHD_DAO();
-        
-        cthddao.Save(chdto,listsp);
-    }
+    
 }

@@ -17,6 +17,11 @@ public class ButtonCustomed extends JButton {
         init();
     }
 
+    public ButtonCustomed(String Text) {
+        setText(Text);
+        init();
+    }
+
     private void init() {
         setContentAreaFilled(false);
         setCursor(new Cursor(Cursor.HAND_CURSOR));

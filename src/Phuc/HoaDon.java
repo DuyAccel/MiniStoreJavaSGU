@@ -328,10 +328,6 @@ public class HoaDon extends javax.swing.JPanel {
 
     private void bt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt1ActionPerformed
         cthd=new CTHD(nv);
-        cthd.setSize(425, 600);
-        cthd.setLocationRelativeTo(null);
-        cthd.setVisible(true);
-        cthd.setResizable(false);
         //Gọi Panel của CTHD vào
     }//GEN-LAST:event_bt1ActionPerformed
 

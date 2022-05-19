@@ -5,8 +5,12 @@
 package Phuc;
 
 import BLL.CTHD_BLL;
+import BLL.Discount_BLL;
+import BLL.HD_BLL;
 import BLL.SP_BLL;
 import DTO.CTHD_DTO;
+import DTO.Discount_DTO;
+import DTO.HD_DTO;
 import DTO.NV_DTO;
 import DTO.SP_DTO;
 import java.util.ArrayList;
@@ -27,12 +31,11 @@ public class CTHD extends javax.swing.JFrame {
     private static int dongia=0, sum=0;
     private String MAHD, Date, MANV;
     private int total;
-    private ArrayList<SP_DTO>listsp=new ArrayList();
     private CTHD_BLL ch;
     private SP_BLL spbll;
     private static int numberofrow=5, i=0;
     private String search;
-    private ArrayList <String> listmasp=new ArrayList();
+    private ArrayList <CTHD_DTO> bill_details = new ArrayList<>();
     private NV_DTO user;
     public CTHD(NV_DTO user) {
         this.user = user;
@@ -406,20 +409,8 @@ public class CTHD extends javax.swing.JFrame {
         Date=tf2.getText();
         MANV=tf3.getText();
         total=Integer.parseInt(tf6.getText());
-        CTHD_DTO chdto=new CTHD_DTO(MAHD, Date, MANV, total);
-        for(int i=0;i<tb.getRowCount();i++)
-        {
-            if(tb.isRowSelected(i)==true)           //Thực hiện điền data vào bảng có khóa ngoại sau
-            {  
-                String a=String.valueOf(tb.getValueAt(i,0));
-                String b=String.valueOf(tb.getValueAt(i,1));
-                int c=Integer.parseInt(String.valueOf(tb.getValueAt(i,2)));
-                int d=Integer.parseInt(String.valueOf(tb.getValueAt(i,3))); 
-                SP_DTO sp=new SP_DTO(a,b,c,d);
-                listsp.add(sp);
-            }
-        }
-        ch.Save(chdto, listsp);
+        HD_DTO hoadon = new HD_DTO(MAHD, Date, MANV, total);
+        (new HD_BLL()).Save(hoadon, bill_details);
     }//GEN-LAST:event_bt5ActionPerformed
 
     private void bt6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt6ActionPerformed
@@ -471,29 +462,44 @@ public class CTHD extends javax.swing.JFrame {
             search=tf9.getText();
             spbll=new SP_BLL();
             SP_DTO product;
+            Discount_BLL DiscBLL = new Discount_BLL();
+            CTHD_DTO bill;
+            String makm ="";
             if ((product = spbll.Find(search))!=null){
-                if (listmasp.isEmpty()) {
-                    listmasp.add(search);
+                Discount_DTO DiscDTO = DiscBLL.getDiscount(search);
+                int gia = Integer.parseInt(tf10.getText())*product.getDongia();
+
+                if (DiscDTO != null){ 
+                    gia -= DiscDTO.getDiscount(search)*gia;
+                    makm = DiscDTO.getID();
+                }
+
+                //Khởi tạo cthd
+                bill = new CTHD_DTO(MAHD, product.getMasp(), MANV, Integer.parseInt(tf10.getText()),makm , gia);
+                
+                if (bill_details.isEmpty()) { //Kiểm tra trong Danh sách sản phẩm
+                    bill_details.add(bill);
                     tb.setValueAt(product.getMasp(), i, 0);
                     tb.setValueAt(product.getTensp(), i, 1);
                     tb.setValueAt(tf10.getText(), i, 2);
-                    tb.setValueAt(product.getDongia(), i, 3);
+                    tb.setValueAt(gia, i, 3);
                     i++;
+
                 } else {
                     int j;
-                    for (j = 0; j < listmasp.size(); j++) {
-                        if (search.equals(listmasp.get(j))) {
+                    for (j = 0; j < bill_details.size(); j++) {
+                        if (search.equals(bill_details.get(j).getMasp())) {
                             JFrame fr = new JFrame();
                             JOptionPane.showMessageDialog(fr, "Trùng mã sản phẩm !");
                             break;
                         }
                     }
-                    if (j == listmasp.size()) {
-                        listmasp.add(search);
+                    if (j == bill_details.size()) {
+                        bill_details.add(bill);
                         tb.setValueAt(product.getMasp(), i, 0);
                         tb.setValueAt(product.getTensp(), i, 1);
                         tb.setValueAt(tf10.getText(), i, 2);
-                        tb.setValueAt(product.getDongia(), i, 3);
+                        tb.setValueAt(gia, i, 3);
                         i++;
                     }
                 }

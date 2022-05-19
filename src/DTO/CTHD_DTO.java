@@ -2,14 +2,33 @@
 package DTO;
 
 public class CTHD_DTO {
-    private String mahd, date, manv, makm="";
+    private String mahd;
+    private String masp;
+    private String manv;
+    private String makm;
+    private int soluong;
     private int total;
 
-    public CTHD_DTO(String mahd, String date, String manv, int total) {
+    public CTHD_DTO(String mahd, String masp, String manv, int soluong, String makm, int total) {
         this.mahd = mahd;
-        this.date = date;
+        this.masp = masp;
+        this.soluong = soluong;
+        this.makm = makm;
         this.total=total;
         this.manv=manv;
+    }
+
+    public String getMasp() {
+        return masp;
+    }
+    public void setMasp(String masp) {
+        this.masp = masp;
+    }
+    public int getSoluong() {
+        return soluong;
+    }
+    public void setSoluong(int soluong) {
+        this.soluong = soluong;
     }
 
     public String getMakm() {
@@ -31,9 +50,7 @@ public class CTHD_DTO {
         return manv;
     }
     
-    public String getDate() {
-        return date;
-    }
+    
 
     public int getTotal() {
         return total;
@@ -43,9 +60,7 @@ public class CTHD_DTO {
         this.mahd = mahd;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
+    
     public void setTotal(int sl) {
         this.total = sl;
     }

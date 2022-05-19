@@ -16,8 +16,6 @@ public class SP_BLL {
     private String item;
     private int price;
     private SP_DAO spdao;
-    private String noice;
-    //private SP_DTO spdto;
     public void setPrice(int price)
     {
         this.price=price;

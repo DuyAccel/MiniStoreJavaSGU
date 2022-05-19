@@ -5,6 +5,7 @@
 package BLL;
 
 import DAO.HD_DAO;
+import DTO.CTHD_DTO;
 import DTO.HD_DTO;
 import java.util.ArrayList;
 
@@ -43,4 +44,9 @@ public class HD_BLL {
         hd=new HD_DAO();
         hd.Delete(selectedid);
     }
+    public void Save(HD_DTO hoadon, ArrayList<CTHD_DTO> sp){
+        hd = new HD_DAO();
+        hd.Save(hoadon, sp);
+    }
+    
 }

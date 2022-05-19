@@ -3,7 +3,8 @@ package DTO;
 
 public class CTDD_DTO {
     private String madd, masp;
-    private int sl, dongia;
+    private int sl;
+    private int gia;
 
     public String getMadd() {
         return madd;
@@ -17,8 +18,8 @@ public class CTDD_DTO {
         return sl;
     }
 
-    public int getDongia() {
-        return dongia;
+    public int getGia() {
+        return gia;
     }
 
     public void setMadd(String madd) {
@@ -33,8 +34,8 @@ public class CTDD_DTO {
         this.sl = sl;
     }
 
-    public void setDongia(int dongia) {
-        this.dongia = dongia;
+    public void setGia(int gia) {
+        this.gia = gia;
     }
     
 }

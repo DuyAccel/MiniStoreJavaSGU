@@ -4,6 +4,7 @@
  */
 package DAO;
 
+import DTO.CTHD_DTO;
 import DTO.HD_DTO;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,12 +15,15 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Paul
  */
 public class HD_DAO {
-    private final String URL="jdbc:sqlserver://localhost:1433; DatabaseName=QLCHMINI;trustServerCertificate=true" ;
+    private final String URL="jdbc:sqlserver://localhost:1433; DatabaseName=MiniStore;trustServerCertificate=true" ;
     private final String User="duy"; 
     private final String Password="123";
     private HD_DTO hddto;
@@ -131,5 +135,24 @@ public class HD_DAO {
             Logger.getLogger(HD_DAO.class.getName()).log(Level.SEVERE, null, ex);
         }  
        return listhd;
+    }
+    public void Save(HD_DTO hoadon, ArrayList<CTHD_DTO>details )
+    {
+        Connection conn = getConnection(URL, User, Password);
+        try {
+            Statement stmt = conn.createStatement();  
+            stmt.executeUpdate("INSERT INTO HOADON VALUES('"+hoadon.getMahd()+"','"+hoadon.getNgxuat()+"','"+hoadon.getManv()+"','"+hoadon.getTongtien()+"','"+0+"')");    //Thực hiện điền data vào bảng có khóa chính trước
+            
+            for (CTHD_DTO sp : details) {
+                System.out.println(sp.getMahd());
+                stmt.executeUpdate("INSERT INTO cthd VALUES('"+sp.getMahd()+"','"+sp.getMasp()+"','"+sp.getSoluong()+"','"+sp.getMakm()  +"','"+sp.getTotal()+"')"); 
+                stmt.executeUpdate("UPDATE SANPHAM SET SL=SL-'"+sp.getSoluong()+"' WHERE MASP='"+sp.getMasp()+"'"); 
+            }                          
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CTHD_DAO.class.getName()).log(Level.SEVERE, null, ex);
+            JFrame fr=new JFrame(); 
+            JOptionPane.showMessageDialog(fr,"Trùng mã hóa đơn");
+        }
     }
 }

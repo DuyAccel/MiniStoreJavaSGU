@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import DTO.CTKM_DTO;
 
 public class CTKM_DAO {
-    private final String URL="jdbc:sqlserver://localhost:1433; DatabaseName=QLCHMINI;trustServerCertificate=true" ;
+    private final String URL="jdbc:sqlserver://localhost:1433; DatabaseName=MiniStore;trustServerCertificate=true" ;
     private final String User="duy"; 
     private final String Password="123";
     private Connection conn;

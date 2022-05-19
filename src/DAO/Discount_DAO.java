@@ -11,7 +11,7 @@ import BLL.CTKM_BLL;
 import DTO.Discount_DTO;
 
 public class Discount_DAO {
-    private final String URL="jdbc:sqlserver://localhost:1433; DatabaseName=QLCHMINI;trustServerCertificate=true" ;
+    private final String URL="jdbc:sqlserver://localhost:1433; DatabaseName=MiniStore;trustServerCertificate=true" ;
     private final String User="duy"; 
     private final String Password="123";
     private Connection conn;
@@ -59,7 +59,7 @@ public class Discount_DAO {
         Discount_DTO discount = null;
         try {
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select MAKM, NHL from KHUYENMAI where isdeleted = 0 and MAKM = '"+MaKM+"'");
+            ResultSet rs = stmt.executeQuery("select makm, nghl from KHUYENMAI where isdeleted = 0 and makm = '"+MaKM+"'");
             if(rs.next()){
                 Discount_DTO dto = new Discount_DTO(rs.getString(1), rs.getString(2));
                 CTKM_BLL bll = new CTKM_BLL();
