@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DAO;
+
 import DTO.TKHH_DTO;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,7 +22,7 @@ public class TKHH_DAO {
     private final String URL="jdbc:sqlserver://localhost:1433; DatabaseName=MiniStore;trustServerCertificate=true" ;
     private final String User="duy"; 
     private final String Password="123";
-    private ArrayList <TKHH_DTO> statistic;
+    private ArrayList <TKHH_DTO> statistic=new ArrayList();
     private TKHH_DTO tkhhdto;
     private String MASP, Ten, Loai;
     private int SL, ConLai;
@@ -36,10 +37,9 @@ public class TKHH_DAO {
             conn=DriverManager.getConnection(URL, User, Password);
             System.out.println("connect successfully!");
         }
-        catch(Exception e)
+        catch(ClassNotFoundException | SQLException e)
         {
             System.out.println("Connection Failed");
-            e.printStackTrace();
         }
         return conn;
     }
@@ -48,8 +48,8 @@ public class TKHH_DAO {
         try {
             Connection conn = getConnection(URL, User, Password);
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT SANPHAM.MASP, TENSP, LOAI, SUM(CTHOADON.SL), SANPHAM.SL - SUM(CTHOADON.SL)"+
-                    "FROM CTHOADON, SANPHAM WHERE CTHOADON.MASP = SANPHAM.MASP and WHERE ISDELETED='"+0+"' GROUP BY SANPHAM.MASP, TENSP, LOAI, SANPHAM.SL");
+            ResultSet rs = stmt.executeQuery("SELECT SANPHAM.MASP, TENSP, LOAI, SUM(CTHD.SL), SANPHAM.SL - SUM(CTHD.SL)"+
+                    "FROM CTHD, SANPHAM WHERE CTHD.MASP = SANPHAM.MASP and ISDELETED='"+0+"' GROUP BY SANPHAM.MASP, TENSP, LOAI, SANPHAM.SL");
            while(rs.next())
             {
                 MASP=rs.getString(1);
@@ -60,19 +60,18 @@ public class TKHH_DAO {
                 tkhhdto=new TKHH_DTO(MASP,Ten,Loai,SL,ConLai);
                 statistic.add(tkhhdto);
             }
-            conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(TKHH_DAO.class.getName()).log(Level.SEVERE, null, ex);
         }    
         return statistic;
     }
-    public ArrayList <TKHH_DTO> Search(String masearch)
+    public TKHH_DTO Search(String masearch)
     {
         try {
             Connection conn = getConnection(URL, User, Password);
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT SANPHAM.MASP, TENSP, LOAI, SUM(CTHOADON.SL), SANPHAM.SL - SUM(CTHOADON.SL)"+
-                            "FROM CTHOADON, SANPHAM WHERE CTHOADON.MASP = SANPHAM.MASP AND ISDELETED='"+0+"' AND SANPHAM.MASP = '" + masearch + "'"
+            ResultSet rs = stmt.executeQuery("SELECT SANPHAM.MASP, TENSP, LOAI, SUM(CTHD.SL), SANPHAM.SL - SUM(CTHD.SL)"+
+                            "FROM CTHD, SANPHAM WHERE CTHD.MASP = SANPHAM.MASP AND ISDELETED='"+0+"' AND SANPHAM.MASP = '" + masearch + "'"
                                     + "GROUP BY SANPHAM.MASP, TENSP, LOAI, SANPHAM.SL");
            while(rs.next())
             {
@@ -83,10 +82,9 @@ public class TKHH_DAO {
                 ConLai=rs.getInt(5);
                 tkhhdto=new TKHH_DTO(MASP,Ten,Loai,SL,ConLai);
             }
-            conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(TKHH_DAO.class.getName()).log(Level.SEVERE, null, ex);
         }    
-        return statistic;
+        return tkhhdto;
     }
 }

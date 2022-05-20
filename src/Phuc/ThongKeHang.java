@@ -5,13 +5,6 @@
 package Phuc;
 
 import BLL.TKHH_BLL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,8 +16,8 @@ public class ThongKeHang extends javax.swing.JPanel {
     /**
      * Creates new form ThongKeHang
      */
-     private TKHH_BLL tkhhbll;
-    private String masearch;
+    private TKHH_BLL tkhhbll;
+    private String masearch;   
     public ThongKeHang() {
         initComponents();
     }
@@ -54,21 +47,15 @@ public class ThongKeHang extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Mã sản phẩm", "Tên sản phẩm", "Loại", "Số lượng", "Còn tồn"
+                "Mã sản phẩm", "Tên sản phẩm", "Loại", "Số lượng đã bán", "Còn tồn"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Thống kê hàng hóa");
+        jLabel1.setText("");
+
 
         jLabel2.setText("Nhập MASP");
-
-        txt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtActionPerformed(evt);
-            }
-        });
 
         search.setText("Tìm Kiếm");
         search.addActionListener(new java.awt.event.ActionListener() {
@@ -95,71 +82,70 @@ public class ThongKeHang extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(175, 175, 175))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(search)
-                        .addGap(18, 18, 18)
-                        .addComponent(bt2)
-                        .addGap(18, 18, 18)
+                        .addGap(6, 6, 6)
                         .addComponent(bt1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 994, Short.MAX_VALUE)))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(425, 425, 425)
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(61, 61, 61)
+                        .addComponent(bt2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(search)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bt2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bt1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33))
+                    .addComponent(jLabel2)
+                    .addComponent(txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(search))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bt1)
+                    .addComponent(bt2))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
-       tkhhbll=new TKHH_BLL();
-       masearch = txt.getText();  
-       DefaultTableModel models = (DefaultTableModel)jTable1.getModel();          
-       for(int i=0;i<tkhhbll.Search(masearch).size();i++)
-       {
-          jTable1.setValueAt(tkhhbll.Search(masearch).get(i).getMASP(), i,0);
-          jTable1.setValueAt(tkhhbll.Search(masearch).get(i).getTen(), i,1);
-          jTable1.setValueAt(tkhhbll.Search(masearch).get(i).getLoai(), i,2);
-          jTable1.setValueAt(tkhhbll.Search(masearch).get(i).getSL(), i,3);
-          jTable1.setValueAt(tkhhbll.Search(masearch).get(i).getConLai(), i,4);
-          models.addRow(new Object[] {});      
-       }  
+            tkhhbll=new TKHH_BLL();
+            masearch = txt.getText();           
+            jTable1.setValueAt(tkhhbll.Search(masearch).getMASP(), 0,0);
+            jTable1.setValueAt(tkhhbll.Search(masearch).getTen(), 0,1);
+            jTable1.setValueAt(tkhhbll.Search(masearch).getLoai(),0,2);
+            jTable1.setValueAt(tkhhbll.Search(masearch).getSL(), 0,3);
+            jTable1.setValueAt(tkhhbll.Search(masearch).getConLai(),0,4); 
+        
     }//GEN-LAST:event_searchActionPerformed
 
     private void bt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt1ActionPerformed
-       tkhhbll=new TKHH_BLL();
+        tkhhbll=new TKHH_BLL();
             DefaultTableModel models = (DefaultTableModel)jTable1.getModel();
             for(int i=0;i<tkhhbll.Statistic().size();i++)
             {
-                jTable1.setValueAt(tkhhbll.Statistic().get(0).getMASP(), i,0);
-                jTable1.setValueAt(tkhhbll.Statistic().get(0).getTen(), i,1);
-                jTable1.setValueAt(tkhhbll.Statistic().get(0).getLoai(), i,2);
-                jTable1.setValueAt(tkhhbll.Statistic().get(0).getSL(), i,3);
-                jTable1.setValueAt(tkhhbll.Statistic().get(0).getConLai(), i,4);
+                jTable1.setValueAt(tkhhbll.Statistic().get(i).getMASP(), i,0);
+                jTable1.setValueAt(tkhhbll.Statistic().get(i).getTen(), i,1);
+                jTable1.setValueAt(tkhhbll.Statistic().get(i).getLoai(), i,2);
+                jTable1.setValueAt(tkhhbll.Statistic().get(i).getSL(), i,3);
+                jTable1.setValueAt(tkhhbll.Statistic().get(i).getConLai(), i,4);
                 models.addRow(new Object[] {});
-            } 
+            }   
     }//GEN-LAST:event_bt1ActionPerformed
 
     private void bt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt2ActionPerformed
@@ -175,10 +161,6 @@ public class ThongKeHang extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_bt2ActionPerformed
-
-    private void txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

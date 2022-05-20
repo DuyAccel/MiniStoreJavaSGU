@@ -9,7 +9,7 @@ import javax.swing.plaf.DimensionUIResource;
 
 import DTO.NV_DTO;
 import Function.MyEvent;
-import GUI.Items.MessageConfirm;
+import GUI.Items.MyMessageConfirm;
 import Phuc.HoaDon;
 
 public class MainFrame extends JFrame{
@@ -96,13 +96,13 @@ public class MainFrame extends JFrame{
                         Main.revalidate();
                         break;
                     case 9:
-                        MessageConfirm switchUser = new MessageConfirm(frame, "Xác nhận đăng xuất", "Bạn muốn đăng xuất tài khoản?", "Confirm.gif");
+                        MyMessageConfirm switchUser = new MyMessageConfirm(frame, "Xác nhận đăng xuất", "Bạn muốn đăng xuất tài khoản?", "Confirm.gif");
                         switchUser.setVisible(true);
                         if (switchUser.getSelected())
                             event.switchFrame();
                         break;
                     case 11:
-                        MessageConfirm quit = new MessageConfirm(frame, "Xác nhận thoát", "Còn gì chưa lưu không đó?", "Confirm.gif");
+                        MyMessageConfirm quit = new MyMessageConfirm(frame, "Xác nhận thoát", "Còn gì chưa lưu không đó?", "Confirm.gif");
                         quit.setVisible(true);
                         if (quit.getSelected())
                             frame.dispose();

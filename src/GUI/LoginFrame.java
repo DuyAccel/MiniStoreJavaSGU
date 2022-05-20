@@ -9,7 +9,7 @@ import javax.swing.plaf.DimensionUIResource;
 
 import DTO.NV_DTO;
 import Function.MyEvent;
-import GUI.Items.MessageConfirm;
+import GUI.Items.MyMessageConfirm;
 import GUI.Items.PanelImage;
 
 public class LoginFrame extends JFrame{
@@ -32,7 +32,7 @@ public class LoginFrame extends JFrame{
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                MessageConfirm mc = new MessageConfirm(frame, "Đừng thoát", "Bạn sợ à?", "Confirm1.png");
+                MyMessageConfirm mc = new MyMessageConfirm(frame, "Đừng thoát", "Bạn sợ à?", "Confirm1.png");
                 mc.setVisible(true);
                 if (mc.getSelected()){
                     frame.dispose();

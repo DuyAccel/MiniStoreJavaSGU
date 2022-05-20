@@ -4,18 +4,16 @@ package DTO;
 public class CTHD_DTO {
     private String mahd;
     private String masp;
-    private String manv;
     private String makm;
     private int soluong;
     private int total;
 
-    public CTHD_DTO(String mahd, String masp, String manv, int soluong, String makm, int total) {
+    public CTHD_DTO(String mahd, String masp, int soluong, String makm, int total) {
         this.mahd = mahd;
         this.masp = masp;
         this.soluong = soluong;
         this.makm = makm;
         this.total=total;
-        this.manv=manv;
     }
 
     public String getMasp() {
@@ -41,17 +39,7 @@ public class CTHD_DTO {
     public String getMahd() {
         return mahd;
     }
-
-    public void setManv(String manv) {
-        this.manv = manv;
-    }
-
-    public String getManv() {
-        return manv;
-    }
     
-    
-
     public int getTotal() {
         return total;
     }
@@ -59,7 +47,6 @@ public class CTHD_DTO {
     public void setMahd(String mahd) {
         this.mahd = mahd;
     }
-
     
     public void setTotal(int sl) {
         this.total = sl;

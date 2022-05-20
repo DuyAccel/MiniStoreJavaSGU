@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.plaf.ColorUIResource;
 
 import GUI.Items.ButtonCustomed;
-import GUI.Items.MessageConfirm;
+import GUI.Items.MyMessageConfirm;
 
 public class TitleBar extends JPanel{
 
@@ -56,7 +56,7 @@ public class TitleBar extends JPanel{
         btnExit.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                MessageConfirm exit = new MessageConfirm(frame, "Xác nhận thoát?", "Ei muốn bạn chăm chỉ làm việc", "Confirm1.png");
+                MyMessageConfirm exit = new MyMessageConfirm(frame, "Xác nhận thoát?", "Ei muốn bạn chăm chỉ làm việc", "Confirm1.png");
                 exit.setVisible(true);
                 if (exit.getSelected())
                     frame.dispose();

@@ -144,7 +144,6 @@ public class HD_DAO {
             stmt.executeUpdate("INSERT INTO HOADON VALUES('"+hoadon.getMahd()+"','"+hoadon.getNgxuat()+"','"+hoadon.getManv()+"','"+hoadon.getTongtien()+"','"+0+"')");    //Thực hiện điền data vào bảng có khóa chính trước
             
             for (CTHD_DTO sp : details) {
-                System.out.println(sp.getMahd());
                 stmt.executeUpdate("INSERT INTO cthd VALUES('"+sp.getMahd()+"','"+sp.getMasp()+"','"+sp.getSoluong()+"','"+sp.getMakm()  +"','"+sp.getTotal()+"')"); 
                 stmt.executeUpdate("UPDATE SANPHAM SET SL=SL-'"+sp.getSoluong()+"' WHERE MASP='"+sp.getMasp()+"'"); 
             }                          

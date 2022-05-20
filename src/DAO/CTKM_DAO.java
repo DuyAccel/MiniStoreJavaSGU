@@ -60,7 +60,7 @@ public class CTKM_DAO {
             
             conn = getConnection(URL, User, Password);
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select MAKM from CTKM, KHUYENMAI where MASP ='"+MaSP+"' and isdeleted = 0");
+            ResultSet rs = stmt.executeQuery("select ctkm.makm from CTKM, khuyenmai where MASP ='"+MaSP+"' and khuyenmai.isdeleted = 0");
             if (rs.next()){
                 discount = rs.getString(1);
             }

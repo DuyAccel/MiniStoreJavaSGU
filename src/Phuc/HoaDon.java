@@ -9,6 +9,7 @@ import DAO.HD_DAO;
 import DTO.HD_DTO;
 import DTO.NV_DTO;
 import Function.GUI;
+import GUI.Items.Bill_Details;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -25,7 +26,7 @@ public class HoaDon extends javax.swing.JPanel {
      */
     private static int numberofrow=1, numberofcol=4;
      private Execute ex;
-     private CTHD cthd;
+     private Bill_Details bill_Details;
      private String MAHD, Date, MANV, total;
      private HD_DTO hddto;
      private HD_DAO hddao=new HD_DAO();
@@ -327,7 +328,8 @@ public class HoaDon extends javax.swing.JPanel {
     }//GEN-LAST:event_bt2ActionPerformed
 
     private void bt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt1ActionPerformed
-        cthd=new CTHD(nv);
+        //cthd=new CTHD(nv);
+        bill_Details = new Bill_Details(nv);
         //Gọi Panel của CTHD vào
     }//GEN-LAST:event_bt1ActionPerformed
 

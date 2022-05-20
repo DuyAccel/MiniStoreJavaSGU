@@ -91,6 +91,22 @@ public class SanPham extends javax.swing.JPanel {
         bt12.setBackground(new ColorUIResource(181, 113, 209));
         bt13.setBackground(new ColorUIResource(181, 113, 209));
         bt14.setBackground(new ColorUIResource(181, 113, 209));
+
+        bt1.setColorHover(new ColorUIResource(116, 47, 158));
+        bt2.setColorHover(new ColorUIResource(116, 47, 158));
+        bt3.setColorHover(new ColorUIResource(116, 47, 158));
+        bt4.setColorHover(new ColorUIResource(116, 47, 158));
+        bt5.setColorHover(new ColorUIResource(116, 47, 158));
+        bt6.setColorHover(new ColorUIResource(116, 47, 158));
+        bt7.setColorHover(new ColorUIResource(116, 47, 158));
+        bt8.setColorHover(new ColorUIResource(116, 47, 158));
+        bt9.setColorHover(new ColorUIResource(116, 47, 158));
+        bt10.setColorHover(new ColorUIResource(116, 47, 158));
+        bt11.setColorHover(new ColorUIResource(116, 47, 158));
+        bt12.setColorHover(new ColorUIResource(116, 47, 158));
+        bt13.setColorHover(new ColorUIResource(116, 47, 158));
+        bt14.setColorHover(new ColorUIResource(116, 47, 158));
+        
         
         InpType.put("Bánh", "Cookie");
         InpType.put("Kẹo", "Candy");
@@ -645,20 +661,20 @@ public class SanPham extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bt1;
-    private javax.swing.JButton bt10;
-    private javax.swing.JButton bt11;
-    private javax.swing.JButton bt12;
-    private javax.swing.JButton bt13;
-    private javax.swing.JButton bt14;
-    private javax.swing.JButton bt2;
-    private javax.swing.JButton bt3;
-    private javax.swing.JButton bt4;
-    private javax.swing.JButton bt5;
-    private javax.swing.JButton bt6;
-    private javax.swing.JButton bt7;
-    private javax.swing.JButton bt8;
-    private javax.swing.JButton bt9;
+    private ButtonCustomed bt1;
+    private ButtonCustomed bt10;
+    private ButtonCustomed bt11;
+    private ButtonCustomed bt12;
+    private ButtonCustomed bt13;
+    private ButtonCustomed bt14;
+    private ButtonCustomed bt2;
+    private ButtonCustomed bt3;
+    private ButtonCustomed bt4;
+    private ButtonCustomed bt5;
+    private ButtonCustomed bt6;
+    private ButtonCustomed bt7;
+    private ButtonCustomed bt8;
+    private ButtonCustomed bt9;
     private javax.swing.JComboBox<String> cbx;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lb0;

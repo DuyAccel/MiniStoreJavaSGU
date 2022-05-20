@@ -16,7 +16,7 @@ import javax.swing.plaf.InsetsUIResource;
 
 import Function.GUI;
 
-public class MessageConfirm extends JDialog {
+public class MyMessageConfirm extends JDialog {
     private GUI gui = new GUI();
     private JLabel mess;
     private JLabel details;
@@ -24,7 +24,7 @@ public class MessageConfirm extends JDialog {
     private ButtonCustomed btn1 = new ButtonCustomed();
     private ButtonCustomed btn2 = new ButtonCustomed();
     private boolean selected;
-    public MessageConfirm(JFrame frame, String title, String text, String icon){
+    public MyMessageConfirm(JFrame frame, String title, String text, String icon){
         super(frame, true);
         mess = new JLabel(title);
         details = new JLabel(text);

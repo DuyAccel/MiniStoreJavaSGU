@@ -22,7 +22,7 @@ public class TKHH_BLL {
         tkhhdao=new TKHH_DAO();
         return tkhhdao.Statistic();
     }
-    public ArrayList<TKHH_DTO>Search(String masearch)
+    public TKHH_DTO Search(String masearch)
     {
         tkhhdao=new TKHH_DAO();
         return tkhhdao.Search(masearch);

@@ -5,10 +5,6 @@
 package BLL;
 
 import DAO.CTHD_DAO;
-import DAO.HD_DAO;
-import DTO.CTHD_DTO;
-import DTO.HD_DTO;
-import java.util.ArrayList;
 
 /**
  *
