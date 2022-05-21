@@ -80,12 +80,13 @@ public class NV_DAO {
         }
        return listnv;
    }
-   public void Edit(NV_DTO nvdto, String selectedid)         //Thao tác thêm trên SQL
+   public void Edit(NV_DTO nvdto, String isdeleted)         //Thao tác thêm trên SQL
    {
        try {
             Connection conn = getConnection(URL, User, Password);
             Statement stmt = conn.createStatement();
-            stmt.executeUpdate("UPDATE NHANVIEN SET MANV='"+nvdto.getManv()+"', TEN='"+nvdto.getTenv()+"', NGSINH='"+nvdto.getNgsinh()+"', DCHI='"+nvdto.getDchi()+"' , SDT='"+nvdto.getSdt()+"', CVU='"+nvdto.getCvu()+"', PASS='"+nvdto.getPass()+"' WHERE MANV='"+selectedid+"'"); 
+            stmt.executeUpdate("UPDATE NHANVIEN SET MANV='"+nvdto.getManv()+"', TEN='"+nvdto.getTenv()+"', NGSINH='"+nvdto.getNgsinh()+"', DCHI='"
+            +nvdto.getDchi()+"' , SDT='"+nvdto.getSdt()+"', CVU='"+nvdto.getCvu()+"', PASS='"+nvdto.getPass()+"', isdeleted = '" + isdeleted + "' WHERE MANV='"+nvdto.getManv()+"'"); 
         
             conn.close();
         } catch (SQLException ex) {

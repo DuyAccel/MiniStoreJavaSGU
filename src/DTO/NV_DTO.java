@@ -3,8 +3,17 @@ package DTO;
 
 public class NV_DTO {
     
-    private String manv, tenv, ngsinh, dchi, sdt, cvu, pass;
+    private String manv;
+    private String tenv;
+    private String ngsinh;
+    private String dchi;
+    private String sdt;
+    private String pass;
     private int isdeleted;
+    private role cvu;
+    private static enum role{
+        Manager, Casher, Warehouse
+    }
 
     public NV_DTO(String manv, String tenv, String ngsinh, String dchi, String sdt, String cvu, String pass) {
         this.manv = manv;
@@ -12,9 +21,33 @@ public class NV_DTO {
         this.ngsinh = ngsinh;
         this.dchi = dchi;
         this.sdt = sdt;
-        this.cvu = cvu;
+        initCvu(cvu);
         this.pass=pass;
     }
+
+    private void initCvu(String cvu){
+        if (cvu.equals("manager")){
+            this.cvu = role.Manager;
+            return;
+        }
+        if (cvu.equals("warehouse")){
+            this.cvu = role.Warehouse;
+            return;
+        }
+        this.cvu = role.Casher;
+    }
+
+    public String getCvu(){
+        switch (cvu) {
+            case Manager:
+                return "manager";
+            case Warehouse:
+                return "warehouse";
+            default:
+                return "casher";
+        }
+    }
+
     public String getManv() {
         return manv;
     }
@@ -33,10 +66,6 @@ public class NV_DTO {
 
     public String getSdt() {
         return sdt;
-    }
-
-    public String getCvu() {
-        return cvu;
     }
 
     public int getIsdeleted() {
@@ -61,10 +90,6 @@ public class NV_DTO {
 
     public void setSdt(String sdt) {
         this.sdt = sdt;
-    }
-
-    public void setCvu(String cvu) {
-        this.cvu = cvu;
     }
 
     public void setIsdeleted(int isdeleted) {

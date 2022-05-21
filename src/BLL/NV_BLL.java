@@ -30,10 +30,10 @@ public class NV_BLL {
         nvdao=new NV_DAO();
         return nvdao.View();
     }
-    public void Edit(NV_DTO nvdto, String selectedid)
+    public void Edit(NV_DTO nvdto, String status)
     {
         nvdao=new NV_DAO();
-        nvdao.Edit(nvdto, selectedid);
+        nvdao.Edit(nvdto, status);
     }
     public void Delete(String selectedid)
     {

@@ -37,7 +37,7 @@ public class MyMessageConfirm extends JDialog {
         setLayout(new GridBagLayout());
         GridBagConstraints gb = new GridBagConstraints();
 
-        setSize(400, 240);
+        setSize(400, 220);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 

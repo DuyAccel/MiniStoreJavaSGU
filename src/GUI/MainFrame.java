@@ -16,6 +16,7 @@ public class MainFrame extends JFrame{
     private PanelBorder Border = new PanelBorder();
     private TitleBar titleBar = new TitleBar(this ,new ColorUIResource(36, 14, 130));
     private PanelMenu Menu = new PanelMenu();
+    private PanelManger Manager;
     private JPanel Main = new JPanel();
 
     private MyEvent event;
@@ -42,6 +43,7 @@ public class MainFrame extends JFrame{
         storage = new PanelStorage(Main.getWidth(), Main.getHeight());
         statstic = new PanelStatistic();
         hoaDon = new HoaDon(user);
+        Manager = new PanelManger(user);
         Main.setLayout(new GridLayout(1,1));
         Main.removeAll();
         Main.add(new PanelIntro(user));
@@ -92,6 +94,12 @@ public class MainFrame extends JFrame{
                     case 4:
                         Main.removeAll();
                         Main.add(statstic);
+                        Main.repaint();
+                        Main.revalidate();
+                        break;
+                    case 8:
+                        Main.removeAll();
+                        Main.add(Manager);
                         Main.repaint();
                         Main.revalidate();
                         break;

@@ -28,9 +28,9 @@ public class MyMessageAlert extends JDialog{
 
         message.setText(Alert);
         gui.setFont(message, 1, 20);
-        message.setForeground(ColorUIResource.RED);
-
         gui.setFont(button, 1, 16);
+        button.setForeground(new ColorUIResource(219, 37, 65));
+        
 
         setLayout(new GridBagLayout());
         GridBagConstraints gb = new GridBagConstraints();
@@ -46,7 +46,7 @@ public class MyMessageAlert extends JDialog{
         gb.gridx = 0;
         gb.gridy = 2;
         add(button, gb);
-        setBackground(ColorUIResource.white);
+
         button.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){

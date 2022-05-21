@@ -238,7 +238,7 @@ public class DonNhan1 extends javax.swing.JPanel {
             dndto=new DN_DTO(madon,ngay,manv ,total,dot);
             for(int i=0;i<tb2.getRowCount();i++)
             {
-                if(tb2.isRowSelected(i)==true)           //Thực hiện điền data vào bảng có khóa ngoại sau
+                if(tb2.isRowSelected(i)==true)           
                 {  
                     String a=String.valueOf(tb2.getValueAt(i,0));
                     String b=String.valueOf(tb2.getValueAt(i,1));
@@ -305,9 +305,9 @@ public class DonNhan1 extends javax.swing.JPanel {
             {
                 if(tb2.isRowSelected(i)==true)
                 {
-                    sl=Double.parseDouble(String.valueOf(tb2.getValueAt(i, 2)));         //Chuyển đổi phương thức từ kiểu Object sang chuỗi
+                    sl=Double.parseDouble(String.valueOf(tb2.getValueAt(i, 2)));         
                     dongia=Integer.parseInt(String.valueOf(tb2.getValueAt(i, 3)));
-                    sum+=ex.Res(sl,dongia);     //Cộng dồn cho mấy dòng khác
+                    sum+=ex.Res(sl,dongia);     
                     t6.setText(String.valueOf(sum));
                 }
             } 

@@ -3,6 +3,7 @@ package GUI;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.event.*;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -10,6 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.plaf.DimensionUIResource;
 import javax.swing.plaf.InsetsUIResource;
+
 
 import BLL.NV_BLL;
 import DTO.NV_DTO;
@@ -24,17 +26,16 @@ public class PanelLogin extends JPanel{
     private JLabel loginImage = new JLabel();
     private JLabel jlbName = new JLabel("ID:"); 
     private JLabel jlbPasswd = new JLabel("Password:");
+    private JLabel jlbWarning = new JLabel("Tài khoản hoặc mật khẩu không đúng");
     private ButtonCustomed btn = new ButtonCustomed();
     private JTextField txtName = new JTextField(){
         @Override
         public void setBorder(Border border) {
-            //Xoa cai Border
         }
     };
     private JPasswordField passwd = new JPasswordField(){
         @Override
         public void setBorder(Border border) {
-            //Xoa not cai Border
         }
     };
     private MyEvent event;
@@ -49,6 +50,7 @@ public class PanelLogin extends JPanel{
         GUI gui = new GUI();
         gui.setFont(jlbName, 3, 20);
         gui.setFont(jlbPasswd,3, 20);
+        gui.setFont(jlbWarning, 3, 16);
         gui.setFont(txtName, 2, 18);
         gui.setFont(passwd, 2, 18);
         gui.setFont(btn, 1, 20);
@@ -63,6 +65,7 @@ public class PanelLogin extends JPanel{
 
         jlbName.setForeground(new ColorUIResource(112, 49, 145));
         jlbPasswd.setForeground(new ColorUIResource(112, 49, 145));
+        jlbWarning.setForeground(ColorUIResource.red);
 
         btn.setBackground(new ColorUIResource(112, 49, 145));
         btn.setText("Đăng nhập");
@@ -102,21 +105,32 @@ public class PanelLogin extends JPanel{
 
         gb.gridx = 0;
         gb.gridy = 4;
-        gb.fill = GridBagConstraints.HORIZONTAL;
         add(passwd, gb);
 
+        
         gb.gridx = 0;
         gb.gridy = 5;
-        gb.insets = new InsetsUIResource(30, 0, 10, 0);
-        add(btn, gb);
+        jlbWarning.setVisible(false);
+        jlbWarning.setHorizontalAlignment(JLabel.CENTER);
+        gb.fill = GridBagConstraints.HORIZONTAL;
+        gb.insets = new InsetsUIResource(20, 0, 0, 0);
+        add(jlbWarning, gb);
 
+        gb.gridx = 0;
+        gb.gridy = 6;
+        gb.insets = new InsetsUIResource(15, 0, 0, 0);
+        add(btn, gb);
         btn.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 if (checkLogin(txtName.getText(), String.valueOf(passwd.getPassword()))){
                     passwd.setText("");
                     txtName.setText("");
+                    jlbWarning.setVisible(false);
                     event.switchFrame();
+                }
+                else{
+                    jlbWarning.setVisible(true);
                 }
             }
         });

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package Phuc;
 
 import BLL.SP_BLL;
@@ -267,7 +263,7 @@ public class SanPham extends javax.swing.JPanel {
             }
         });
 
-        cbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bánh", "Kẹo", "Nước", "Thức ăn nhanh", "Trái Cây", "Mỳ" }));
+        cbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bánh", "Kẹo", "Nước", "Thức ăn nhanh", "Trái cây", "Mỳ" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -449,6 +445,9 @@ public class SanPham extends javax.swing.JPanel {
             sl=Integer.parseInt(tf3.getText());
             gia=Integer.parseInt(tf4.getText());
             Loai= InpType.get(String.valueOf(cbx.getSelectedItem()));
+
+            System.out.println(Loai);
+
             MANCC=tf6.getText();      
             spdto=new SP_DTO(MASP,Name,sl,gia,Loai,MANCC);
             spbll.Add(spdto);

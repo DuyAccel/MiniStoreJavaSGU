@@ -16,6 +16,9 @@ public class SP_BLL {
     private String item;
     private int price;
     private SP_DAO spdao;
+    private String noice;
+    private ArrayList <String> listmasp=new ArrayList();
+    //private SP_DTO spdto;
     public void setPrice(int price)
     {
         this.price=price;
@@ -92,9 +95,9 @@ public class SP_BLL {
         spdao=new SP_DAO();
         spdao.Delete(selectedid);
     }
-
-    public SP_DTO Find(String ID){
-        spdao = new SP_DAO();
-        return spdao.find(ID);
+    public SP_DTO Find(String search)
+    {    
+        spdao=new SP_DAO();
+        return spdao.find(search);     
     }
 }
