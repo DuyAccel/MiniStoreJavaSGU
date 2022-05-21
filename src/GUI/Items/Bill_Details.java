@@ -112,15 +112,15 @@ public class Bill_Details extends JFrame{
         gui.setFont(btn_ReInput, 1, 16);
         gui.setFont(btn_Calculate, 1, 16);
         
-        btn_Calculate.setBackground(new ColorUIResource(181, 113, 209));
-        btn_ReInput.setBackground(new ColorUIResource(181, 113, 209));
-        btn_SaveBill.setBackground(new ColorUIResource(181, 113, 209));
-        btn_SetQuantity.setBackground(new ColorUIResource(181, 113, 209));
+        btn_Calculate.setBackground(new ColorUIResource(116, 47, 158));
+        btn_ReInput.setBackground(new ColorUIResource(116, 47, 158));
+        btn_SaveBill.setBackground(new ColorUIResource(116, 47, 158));
+        btn_SetQuantity.setBackground(new ColorUIResource(116, 47, 158));
         btn_rmProduct.setBackground(new ColorUIResource(219, 37, 65));
 
-        btn_Calculate.setColorHover(new ColorUIResource(116, 47, 158));
-        btn_ReInput.setColorHover(new ColorUIResource(116, 47, 158));
-        btn_SaveBill.setColorHover(new ColorUIResource(116, 47, 158));
+        btn_Calculate.setColorHover(new ColorUIResource(181, 113, 209));
+        btn_ReInput.setColorHover(new ColorUIResource(181, 113, 209));
+        btn_SaveBill.setColorHover(new ColorUIResource(181, 113, 209));
         btn_SetQuantity.setColorHover(new ColorUIResource(116, 47, 158));
         btn_rmProduct.setColorHover(new ColorUIResource(148, 16, 37));
 

@@ -11,7 +11,7 @@ public class NV_DTO {
     private String pass;
     private int isdeleted;
     private role cvu;
-    private static enum role{
+    public static enum role{
         Manager, Casher, Warehouse
     }
 
@@ -35,6 +35,10 @@ public class NV_DTO {
             return;
         }
         this.cvu = role.Casher;
+    }
+
+    public role getRole(){
+        return cvu;
     }
 
     public String getCvu(){

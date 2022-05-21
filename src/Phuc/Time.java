@@ -22,6 +22,13 @@ public class Time {
         current= LocalDateTime.now();
         formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
     }
+    public String Month()
+    {
+        Calendar calendar = Calendar.getInstance();
+        int month;
+        month= calendar.get(Calendar.MONTH);
+        return String.valueOf(month+1);
+    }
     public String Date()
     {
         Calendar calendar = Calendar.getInstance();

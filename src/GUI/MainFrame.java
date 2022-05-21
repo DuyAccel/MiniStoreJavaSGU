@@ -8,6 +8,7 @@ import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.DimensionUIResource;
 
 import DTO.NV_DTO;
+import DTO.NV_DTO.role;
 import Function.MyEvent;
 import GUI.Items.MyMessageConfirm;
 import Phuc.HoaDon;
@@ -18,6 +19,7 @@ public class MainFrame extends JFrame{
     private PanelMenu Menu = new PanelMenu();
     private PanelManger Manager;
     private JPanel Main = new JPanel();
+    private NV_DTO user;
 
     private MyEvent event;
 
@@ -39,7 +41,7 @@ public class MainFrame extends JFrame{
 
 
     public void initPanel(NV_DTO user){
-  
+        this.user = user;
         storage = new PanelStorage(Main.getWidth(), Main.getHeight());
         statstic = new PanelStatistic();
         hoaDon = new HoaDon(user);
@@ -77,25 +79,30 @@ public class MainFrame extends JFrame{
             public void selected(int index) {
                 switch (index){
                     case 2:
-                        Main.removeAll();
-                        Main.add(hoaDon);
-                        Main.repaint();
-                        Main.revalidate();
-                        Main.setBackground(ColorUIResource.white);
+                        if (user.getRole() == role.Casher || user.getRole() == role.Manager){
+                            Main.removeAll();
+                            Main.add(hoaDon);
+                            Main.repaint();
+                            Main.revalidate();
+                            Main.setBackground(ColorUIResource.white);
+                        }
                         break;
                     case 3:
-                        
-                        Main.removeAll();
-                        Main.add(storage);
-                        Main.repaint();
-                        Main.revalidate();
-                        Main.setBackground(ColorUIResource.white);
+                        if (user.getRole() == role.Warehouse || user.getRole() == role.Manager) {
+                            Main.removeAll();
+                            Main.add(storage);
+                            Main.repaint();
+                            Main.revalidate();
+                            Main.setBackground(ColorUIResource.white);
+                        }
                         break;
                     case 4:
-                        Main.removeAll();
-                        Main.add(statstic);
-                        Main.repaint();
-                        Main.revalidate();
+                        if (user.getRole() == role.Manager) {
+                            Main.removeAll();
+                            Main.add(statstic);
+                            Main.repaint();
+                            Main.revalidate();
+                        }
                         break;
                     case 8:
                         Main.removeAll();

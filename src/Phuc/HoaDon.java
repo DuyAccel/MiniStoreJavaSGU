@@ -10,9 +10,11 @@ import DTO.HD_DTO;
 import DTO.NV_DTO;
 import Function.GUI;
 import GUI.Items.Bill_Details;
+import GUI.Items.ButtonCustomed;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -57,12 +59,12 @@ public class HoaDon extends javax.swing.JPanel {
         tf3 = new javax.swing.JTextField();
         lb5 = new javax.swing.JLabel();
         tf4 = new javax.swing.JTextField();
-        bt6 = new javax.swing.JButton();
-        bt5 = new javax.swing.JButton();
-        bt4 = new javax.swing.JButton();
-        bt3 = new javax.swing.JButton();
-        bt2 = new javax.swing.JButton();
-        bt1 = new javax.swing.JButton();
+        bt6 = new ButtonCustomed();
+        bt5 = new ButtonCustomed();
+        bt4 = new ButtonCustomed();
+        bt3 = new ButtonCustomed();
+        bt2 = new ButtonCustomed();
+        bt1 = new ButtonCustomed();
 
         tb.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -96,6 +98,21 @@ public class HoaDon extends javax.swing.JPanel {
         gui.setFont(bt4, 1, 16);
         gui.setFont(bt5, 1, 16);
         gui.setFont(bt5, 1, 16);
+        gui.setFont(bt6, 1, 16);
+
+        bt1.setBackground(new ColorUIResource(116, 47, 158));
+        bt2.setBackground(new ColorUIResource(116, 47, 158));
+        bt3.setBackground(new ColorUIResource(116, 47, 158));
+        bt4.setBackground(new ColorUIResource(116, 47, 158));
+        bt5.setBackground(new ColorUIResource(116, 47, 158));
+        bt6.setBackground(new ColorUIResource(116, 47, 158));
+
+        bt1.setColorHover(new ColorUIResource(181, 113, 209));
+        bt2.setColorHover(new ColorUIResource(181, 113, 209));
+        bt3.setColorHover(new ColorUIResource(181, 113, 209));
+        bt4.setColorHover(new ColorUIResource(181, 113, 209));
+        bt5.setColorHover(new ColorUIResource(181, 113, 209));
+        bt6.setColorHover(new ColorUIResource(181, 113, 209));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Hóa đơn");
@@ -335,12 +352,12 @@ public class HoaDon extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bt1;
-    private javax.swing.JButton bt2;
-    private javax.swing.JButton bt3;
-    private javax.swing.JButton bt4;
-    private javax.swing.JButton bt5;
-    private javax.swing.JButton bt6;
+    private ButtonCustomed bt1;
+    private ButtonCustomed bt2;
+    private ButtonCustomed bt3;
+    private ButtonCustomed bt4;
+    private ButtonCustomed bt5;
+    private ButtonCustomed bt6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lb2;
