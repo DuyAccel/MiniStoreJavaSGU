@@ -16,8 +16,6 @@ public class PanelStorage extends JScrollPane {
     private SanPham product = new SanPham();
     private JPanel container = new JPanel();
     public PanelStorage(int width, int height){
-        
-        // setLayout(new GridLayout(1,1));
         setup();
         setPreferredSize(new DimensionUIResource(width, height));
     }
