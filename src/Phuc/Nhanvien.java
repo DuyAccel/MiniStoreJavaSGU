@@ -6,8 +6,11 @@ package Phuc;
 
 import BLL.NV_BLL;
 import DTO.NV_DTO;
+import GUI.Items.ButtonCustomed;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -51,14 +54,33 @@ public class Nhanvien extends javax.swing.JPanel {
         tf7 = new javax.swing.JTextField();
         lb8 = new javax.swing.JLabel();
         tf8 = new javax.swing.JTextField();
-        bt1 = new javax.swing.JButton();
-        bt2 = new javax.swing.JButton();
-        bt3 = new javax.swing.JButton();
-        bt4 = new javax.swing.JButton();
-        bt5 = new javax.swing.JButton();
-        bt6 = new javax.swing.JButton();
-        bt7 = new javax.swing.JButton();
-        bt8 = new javax.swing.JButton();
+        bt1 = new ButtonCustomed();
+        bt2 = new ButtonCustomed();
+        bt3 = new ButtonCustomed();
+        bt4 = new ButtonCustomed();
+        bt5 = new ButtonCustomed();
+        bt6 = new ButtonCustomed();
+        bt7 = new ButtonCustomed();
+        bt8 = new ButtonCustomed();
+
+        bt1.setBackground(new ColorUIResource(116, 47, 158));
+        bt2.setBackground(new ColorUIResource(116, 47, 158));
+        bt3.setBackground(new ColorUIResource(116, 47, 158));
+        bt4.setBackground(new ColorUIResource(116, 47, 158));
+        bt5.setBackground(new ColorUIResource(116, 47, 158));
+        bt6.setBackground(new ColorUIResource(116, 47, 158));
+        bt7.setBackground(new ColorUIResource(116, 47, 158));
+        bt8.setBackground(new ColorUIResource(116, 47, 158));
+
+        
+        bt1.setColorHover(new ColorUIResource(181, 113, 209));
+        bt2.setColorHover(new ColorUIResource(181, 113, 209));
+        bt3.setColorHover(new ColorUIResource(181, 113, 209));
+        bt4.setColorHover(new ColorUIResource(181, 113, 209));
+        bt5.setColorHover(new ColorUIResource(181, 113, 209));
+        bt6.setColorHover(new ColorUIResource(181, 113, 209));
+        bt7.setColorHover(new ColorUIResource(181, 113, 209));
+        bt8.setColorHover(new ColorUIResource(181, 113, 209));
 
         tb.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -85,7 +107,7 @@ public class Nhanvien extends javax.swing.JPanel {
 
         lb6.setText("Chức vụ");
 
-        cbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ban Hang", "Thu Kho", "Ke Toan" }));
+        cbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Thu Ngân", "Kiểm Kho", "Quản Lý" }));
 
         lb7.setText("Password");
 
@@ -441,14 +463,14 @@ public class Nhanvien extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bt1;
-    private javax.swing.JButton bt2;
-    private javax.swing.JButton bt3;
-    private javax.swing.JButton bt4;
-    private javax.swing.JButton bt5;
-    private javax.swing.JButton bt6;
-    private javax.swing.JButton bt7;
-    private javax.swing.JButton bt8;
+    private ButtonCustomed bt1;
+    private ButtonCustomed bt2;
+    private ButtonCustomed bt3;
+    private ButtonCustomed bt4;
+    private ButtonCustomed bt5;
+    private ButtonCustomed bt6;
+    private ButtonCustomed bt7;
+    private ButtonCustomed bt8;
     private javax.swing.JComboBox<String> cbx;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lb0;

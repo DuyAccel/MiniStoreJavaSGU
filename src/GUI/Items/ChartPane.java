@@ -1,7 +1,6 @@
 package GUI.Items;
 
 import java.util.ArrayList;
-import java.util.Locale.Category;
 import java.awt.GridLayout;
 
 import javax.swing.JPanel;

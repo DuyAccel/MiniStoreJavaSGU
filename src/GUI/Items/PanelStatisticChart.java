@@ -1,6 +1,5 @@
 package GUI.Items;
 
-import java.awt.BorderLayout;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -183,7 +182,7 @@ public class PanelStatisticChart extends JScrollPane {
             data_sold.add(Income.get(i).getSold());
         }
 
-        Chart_IncomeDay = new ChartPane(data_income, label, "Doanh Theo Ngày",
+        Chart_IncomeDay = new ChartPane(data_income, label, "Doanh Thu Theo Ngày",
          "Ngày", "Ngàn VND", new ColorUIResource(ColorUIResource.RED));
 
         Chart_SoldDay = new ChartPane(data_sold, label, "Bán Được Theo Ngày",

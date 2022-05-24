@@ -28,6 +28,7 @@ import DTO.HD_DTO;
 import DTO.NV_DTO;
 import DTO.SP_DTO;
 import Function.GUI;
+import Function.ITextPDF;
 import Phuc.Time;
 
 public class Bill_Details extends JFrame{
@@ -40,6 +41,7 @@ public class Bill_Details extends JFrame{
     private int Total_Price = 0;
     private int Final_Price = 0;
     protected GUI gui = new GUI();
+    private ITextPDF exportPDF = new ITextPDF();
 
     private JPanel Panel_Input = new JPanel();
     private JPanel Panel_Manger = new JPanel();
@@ -111,6 +113,8 @@ public class Bill_Details extends JFrame{
         gui.setFont(btn_SaveBill, 1, 16);
         gui.setFont(btn_ReInput, 1, 16);
         gui.setFont(btn_Calculate, 1, 16);
+
+        btn_SaveBill.setEnabled(false);
         
         btn_Calculate.setBackground(new ColorUIResource(116, 47, 158));
         btn_ReInput.setBackground(new ColorUIResource(116, 47, 158));
@@ -479,6 +483,10 @@ public class Bill_Details extends JFrame{
         try {
             int received = Integer.parseInt(txtf_Received.getText());
             int remainder = received - Final_Price;
+            if (remainder >= 0){
+                btn_SaveBill.setEnabled(true);
+            }
+            else    throw new NumberFormatException();
             txtf_Remainder.setText(remainder+"");
         } catch (NumberFormatException e) {
             MyMessageAlert alert = new MyMessageAlert(frame, "Tiền nhận không hợp lệ");
@@ -525,13 +533,16 @@ public class Bill_Details extends JFrame{
             Bill.setManv(txtf_worker_id.getText());
             Bill.setTongtien(Final_Price);
             Bill.setNgxuat((new Time()).toString());
+
             (new HD_BLL()).Save(Bill, details);
+            exportPDF.createDoc(Bill, details, products, Integer.parseInt(txtf_Received.getText()));
 
             MyMessageAlert alert = new MyMessageAlert(frame, "Thanh toán thành công!");
             alert.setVisible(true);
             dispose();
         } catch (Exception e) {
             MyMessageAlert alert = new MyMessageAlert(frame, "Thanh toán thất bại");
+            
             alert.setVisible(true);
         }
     }
