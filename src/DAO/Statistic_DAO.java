@@ -82,11 +82,11 @@ public class Statistic_DAO {
         return data;
     }
 
-    public void increaseIcome(String date, int income){
+    public void increaseIcome(String date, int income, int sold){
         Connection conn = getConnection();
         try {
             Statement stmt = conn.createStatement();
-            stmt.executeUpdate("update doanhthu set doanhthu = doanhthu + "+income+" where thoigian = '"+date+"'");
+            stmt.executeUpdate("update doanhthu set doanhthu = doanhthu + "+income+" , banduoc = banduoc +"+ sold +" where thoigian = '"+date+"'");
         } catch (Exception e) {
             e.printStackTrace();
         }

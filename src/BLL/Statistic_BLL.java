@@ -25,7 +25,7 @@ public class Statistic_BLL {
             (new Statistic_DAO()).addData(new Statistic_DTO(Date, Income, Sold));
             return;
         }
-        (new Statistic_DAO()).increaseIcome(Date, Income);
+        (new Statistic_DAO()).increaseIcome(Date, Income, Sold);
     }
 
     private boolean checkDay(){

@@ -99,7 +99,7 @@ public class MainFrame extends JFrame{
                     case 4:
                         if (user.getRole() == role.Manager) {
                             Main.removeAll();
-                            Main.add(statstic);
+                            Main.add(new PanelStatistic());
                             Main.repaint();
                             Main.revalidate();
                         }
