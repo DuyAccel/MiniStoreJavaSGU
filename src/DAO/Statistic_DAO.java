@@ -67,8 +67,6 @@ public class Statistic_DAO {
             e.printStackTrace();
         }
     }
-
-    
     
     public Statistic_DTO getLastestRow(){
         Connection conn = getConnection();
@@ -82,5 +80,15 @@ public class Statistic_DAO {
             e.printStackTrace();
         }
         return data;
+    }
+
+    public void increaseIcome(String date, int income){
+        Connection conn = getConnection();
+        try {
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate("update doanhthu set doanhthu = doanhthu + "+income+" where thoigian = '"+date+"'");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

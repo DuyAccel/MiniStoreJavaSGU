@@ -4,6 +4,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -22,6 +24,7 @@ import BLL.CTHD_BLL;
 import BLL.Discount_BLL;
 import BLL.HD_BLL;
 import BLL.SP_BLL;
+import BLL.Statistic_BLL;
 import DTO.CTHD_DTO;
 import DTO.Discount_DTO;
 import DTO.HD_DTO;
@@ -434,6 +437,14 @@ public class Bill_Details extends JFrame{
                 return;
             }
 
+            if(product.getSl() < ProductQuantity) {
+
+                MyMessageAlert alert = new MyMessageAlert(frame, "Không đủ sản phẩm (SL còn: " + product.getSl() + ")");
+                alert.setVisible(true);
+                return;
+
+            }
+
             price = ProductQuantity * product.getDongia();
             Total_Price += price;
             DsC = (new Discount_BLL()).getDiscount(ProductID);
@@ -457,7 +468,6 @@ public class Bill_Details extends JFrame{
         } catch (NullPointerException NullE){
             MyMessageAlert alert = new MyMessageAlert(frame, "Hãy nhập mã sản phẩm");
             alert.setVisible(true);
-
         }
     }
 
@@ -534,6 +544,13 @@ public class Bill_Details extends JFrame{
             Bill.setTongtien(Final_Price);
             Bill.setNgxuat((new Time()).toString());
 
+            LocalDate date = LocalDate.now();
+            int Sold = 0;
+            for (CTHD_DTO cthd_DTO : details) {
+                Sold += cthd_DTO.getSoluong();
+            }
+
+            (new Statistic_BLL()).addData(date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), Final_Price/1000, Sold);
             (new HD_BLL()).Save(Bill, details);
             exportPDF.createDoc(Bill, details, products, Integer.parseInt(txtf_Received.getText()));
 

@@ -37,9 +37,7 @@ public class SanPham extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        GUI gui = new GUI();
-
-        
+        GUI gui = new GUI();        
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tb = new javax.swing.JTable();
@@ -72,6 +70,13 @@ public class SanPham extends javax.swing.JPanel {
         bt12 = new ButtonCustomed();
         bt13 = new ButtonCustomed();
         cbx = new javax.swing.JComboBox<>();
+
+        gui.setFont(tf1, 0, 16);
+        gui.setFont(tf2, 0, 16);
+        gui.setFont(tf3, 0, 16);
+        gui.setFont(tf4, 0, 16);
+        gui.setFont(tf6, 0, 16);
+        gui.setFont(tf7, 0, 16);
 
         bt1.setBackground(new ColorUIResource(116, 47, 158));
         bt2.setBackground(new ColorUIResource(116, 47, 158));

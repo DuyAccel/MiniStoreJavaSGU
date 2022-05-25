@@ -314,14 +314,14 @@ public class SP_DAO {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select * from sanpham where masp ='"+ID+"' and isdeleted = 0");
             if(rs.next()){
-                product = new SP_DTO(ID, rs.getString(2), rs.getInt(4));
+                product = new SP_DTO(ID, rs.getString(2), rs.getInt(3), rs.getInt(4));
             }
             else{
                 JOptionPane optionPane = new JOptionPane("Không tìm thấy sản phẩm");
                 optionPane.setVisible(true);
             }
             conn.close();
-        } catch (Exception e) {
+        } catch (Exception e) { 
             e.printStackTrace();
         }
         return product;

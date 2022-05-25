@@ -20,12 +20,19 @@ public class Statistic_BLL {
         return (new Statistic_DAO()).getData(Year + "-" +  Month);
     }   
 
-    public boolean checkDay(String Date){
+    public void addData(String Date, int Income, int Sold){
+        if (checkDay()){
+            (new Statistic_DAO()).addData(new Statistic_DTO(Date, Income, Sold));
+            return;
+        }
+        (new Statistic_DAO()).increaseIcome(Date, Income);
+    }
+
+    private boolean checkDay(){
         Statistic_DTO data = (new Statistic_DAO()).getLastestRow();
         LocalDate now = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.parse(data.getDate(), formatter);
-        
         if (date.isBefore(now)) 
             return true;
         return false;

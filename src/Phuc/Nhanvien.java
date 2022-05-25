@@ -6,7 +6,10 @@ package Phuc;
 
 import BLL.NV_BLL;
 import DTO.NV_DTO;
+import Function.GUI;
 import GUI.Items.ButtonCustomed;
+
+import java.util.Hashtable;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -23,6 +26,7 @@ public class Nhanvien extends javax.swing.JPanel {
     private static int i=0;
     private NV_DTO nvdto;
     private NV_BLL nvbll;
+    private Hashtable<String, String> role = new Hashtable<>();
     public Nhanvien() {
         initComponents();
     }
@@ -34,6 +38,11 @@ public class Nhanvien extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
+        GUI gui = new GUI();
+        role.put("Thu Ngân", "casher");
+        role.put("Quản Lý", "manager");
+        role.put("Kiểm Kho", "warehouse");
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tb = new javax.swing.JTable();
@@ -54,6 +63,8 @@ public class Nhanvien extends javax.swing.JPanel {
         tf7 = new javax.swing.JTextField();
         lb8 = new javax.swing.JLabel();
         tf8 = new javax.swing.JTextField();
+
+
         bt1 = new ButtonCustomed();
         bt2 = new ButtonCustomed();
         bt3 = new ButtonCustomed();
@@ -121,6 +132,7 @@ public class Nhanvien extends javax.swing.JPanel {
         });
 
         bt2.setText("Add Row");
+        bt2.setIcon(gui.getImg("add.png"));
         bt2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt2ActionPerformed(evt);
@@ -128,6 +140,7 @@ public class Nhanvien extends javax.swing.JPanel {
         });
 
         bt3.setText("Delete Row");
+        bt3.setIcon(gui.getImg("delete.png"));
         bt3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt3ActionPerformed(evt);
@@ -135,6 +148,7 @@ public class Nhanvien extends javax.swing.JPanel {
         });
 
         bt4.setText("Clear");
+        bt4.setIcon(gui.getImg("clear.png"));
         bt4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt4ActionPerformed(evt);
@@ -142,6 +156,7 @@ public class Nhanvien extends javax.swing.JPanel {
         });
 
         bt5.setText("Thêm");
+        bt5.setIcon(gui.getImg("add1.png"));
         bt5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt5ActionPerformed(evt);
@@ -149,6 +164,7 @@ public class Nhanvien extends javax.swing.JPanel {
         });
 
         bt6.setText("Xem");
+        bt6.setIcon(gui.getImg("look.png"));
         bt6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt6ActionPerformed(evt);
@@ -156,6 +172,7 @@ public class Nhanvien extends javax.swing.JPanel {
         });
 
         bt7.setText("Sửa");
+        bt7.setIcon(gui.getImg("edit.png"));
         bt7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt7ActionPerformed(evt);
@@ -163,6 +180,7 @@ public class Nhanvien extends javax.swing.JPanel {
         });
 
         bt8.setText("Xóa");
+        bt8.setIcon(gui.getImg("delete1.png"));
         bt8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt8ActionPerformed(evt);
@@ -334,7 +352,7 @@ public class Nhanvien extends javax.swing.JPanel {
             Dob=tf3.getText();
             Address=tf4.getText();
             Phonenumber=tf5.getText();
-            Role=String.valueOf(cbx.getSelectedItem());
+            Role=role.get(String.valueOf(cbx.getSelectedItem()));
             Pass=tf7.getText();
             nvdto=new NV_DTO(MANV,Name,Dob,Address,Phonenumber,Role,Pass);
             nvbll.Add(nvdto);
@@ -365,7 +383,7 @@ public class Nhanvien extends javax.swing.JPanel {
                 tb.setValueAt(nvbll.View().get(i).getNgsinh(), i, 2);
                 tb.setValueAt(nvbll.View().get(i).getDchi(), i, 3);
                 tb.setValueAt(nvbll.View().get(i).getSdt(), i, 4);
-                tb.setValueAt(nvbll.View().get(i).getCvu(), i, 5);
+                tb.setValueAt(nvbll.View().get(i).getCvuVN(), i, 5);
                 tb.setValueAt(nvbll.View().get(i).getPass(), i, 6);
                 models.addRow(new Object[] {});
             } 
@@ -455,7 +473,7 @@ public class Nhanvien extends javax.swing.JPanel {
         tb.setValueAt(nvbll.Search(search).get(i).getNgsinh(), i, 2);
         tb.setValueAt(nvbll.Search(search).get(i).getDchi(), i, 3);
         tb.setValueAt(nvbll.Search(search).get(i).getSdt(), i, 4);
-        tb.setValueAt(nvbll.Search(search).get(i).getCvu(), i, 5);
+        tb.setValueAt(nvbll.Search(search).get(i).getCvuVN(), i, 5);
         tb.setValueAt(nvbll.Search(search).get(i).getPass(), i, 6);
         models.addRow(new Object[] {});
        }

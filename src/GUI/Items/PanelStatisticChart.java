@@ -190,7 +190,7 @@ public class PanelStatisticChart extends JScrollPane {
         
         Chart_IncomeDay.setChartSize(getWidth(), 350);
         Chart_SoldDay.setChartSize(getWidth(), 350);
-
+        
         buildTable(Table_IncomeDay, data_income, label, true);
         buildTable(Table_SoldDay, data_sold, label, false);
     }

@@ -51,6 +51,16 @@ public class NV_DTO {
                 return "casher";
         }
     }
+    public String getCvuVN(){
+        switch (cvu) {
+            case Manager:
+                return "Quản Lý";
+            case Warehouse:
+                return "Kiểm Kho";
+            default:
+                return "Thu Ngân";
+        }
+    }
 
     public String getManv() {
         return manv;

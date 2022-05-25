@@ -128,10 +128,11 @@ public class ITextPDF {
             Image img = new Image(imgData);
             P_Img.add(img);
             P_Img.setTextAlignment(TextAlignment.LEFT);
-            Text Text_Header = new Text("   D2P Company   273 An Duong Vuong, P3, Quan 5, TP.HCM");
+            //Text Text_CompanyName = new Text("D2P Company \n");
+            Text Text_Header = new Text("   \n\nD2P Company \n  273 An Duong Vuong, P3, Quan 5, TP.HCM");
             P_Text.add(Text_Header);
             P_Text.setTextAlignment(TextAlignment.LEFT);
-            Table Table_Header = new Table(UnitValue.createPercentArray(new float[] { 3, 1 }));
+            Table Table_Header = new Table(UnitValue.createPercentArray(new float[] { 2, 2 }));
             Table_Header.setWidth(UnitValue.createPercentValue(100));
             Table_Header.addCell(new Cell().add(P_Img).setBorder(Border.NO_BORDER));
             Table_Header.addCell(new Cell().add(P_Text).setBorder(Border.NO_BORDER));
