@@ -1,13 +1,21 @@
 
 package DTO;
 
-public class CTDD_DTO {
-    private String madd, masp;
+public class CTDN_DTO {
+    private String madn;
+    private String masp;
     private int sl;
     private int gia;
 
-    public String getMadd() {
-        return madd;
+    public CTDN_DTO(String madn, String masp, int sl, int gia){
+        this.madn = madn;
+        this.masp = masp;
+        this.sl = sl;
+        this.gia = gia;
+    }
+
+    public String getMadn() {
+        return madn;
     }
 
     public String getMasp() {
@@ -22,8 +30,8 @@ public class CTDD_DTO {
         return gia;
     }
 
-    public void setMadd(String madd) {
-        this.madd = madd;
+    public void setMadn(String madn) {
+        this.madn = madn;
     }
 
     public void setMasp(String masp) {

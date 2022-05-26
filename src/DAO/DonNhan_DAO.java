@@ -4,7 +4,7 @@
  */
 package DAO;
 
-import DTO.DN_DTO;
+import DTO.DonNhan_DTO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -16,15 +16,15 @@ import java.util.ArrayList;
  *
  * @author Paul
  */
-public class DN_DAO {
+public class DonNhan_DAO {
     private final String URL="jdbc:sqlserver://localhost:1433; DatabaseName=MiniStore;trustServerCertificate=true" ;
     private final String User="duy";
     private final String Password="123";
-    private String madon, ngay, manv, madd;
-    private int dot, total;
-    private ArrayList<DN_DTO>listdn=new ArrayList();
-    private DN_DTO dndto;
-    public DN_DAO() {
+    private String madon, ngay, manv;
+    private int total;
+    private ArrayList<DonNhan_DTO>listdn=new ArrayList<>();
+    private DonNhan_DTO dndto;
+    public DonNhan_DAO() {
     }
     private Connection getConnection(String URL, String User, String Password)
     {
@@ -41,13 +41,13 @@ public class DN_DAO {
         }
         return conn;
     }
-    public void Add(DN_DTO dndto)
+    public void Add(DonNhan_DTO dndto)
     {
         try {
             Connection conn = getConnection(URL, User, Password);
             Statement stmt = conn.createStatement();
             stmt.executeUpdate("INSERT INTO DONNHAN VALUES('" + dndto.getMadn() + "','" + dndto.getNgnhan()
-                    + "','" + dndto.getDot() + "','" + dndto.getManv() + "','" + dndto.getTong() + "')"); 
+                     + "','" + dndto.getManv() + "','" + dndto.getTong() + "', 0)"); 
                     
             conn.close();
         } 
@@ -56,7 +56,7 @@ public class DN_DAO {
             System.out.println(e);
         }
     }
-    public ArrayList<DN_DTO>View()
+    public ArrayList<DonNhan_DTO>View()
     {
         Connection conn = getConnection(URL, User, Password);
         try 
@@ -67,10 +67,9 @@ public class DN_DAO {
             {
                madon=rs.getString(1);
                ngay=rs.getString(2);
-               dot=rs.getInt(3);
-               manv=rs.getString(4);
-               total=rs.getInt(6);
-               dndto=new DN_DTO(madon,ngay,manv,total,dot);
+               manv=rs.getString(3);
+               total=rs.getInt(4);
+               dndto=new DonNhan_DTO(madon,ngay,manv,total);
                listdn.add(dndto);
             }
             conn.close();
@@ -78,5 +77,19 @@ public class DN_DAO {
             System.out.println(e);
         } 
         return listdn;
+    }
+    public int getRowCount(){
+        int count = 0;
+        Connection conn = getConnection(URL, User, Password);
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from donnhan");
+            while(rs.next()){
+                count++;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return count;
     }
 }

@@ -48,14 +48,19 @@ public class SP_DTO {
         this.sl = sl;
         this.dongia = dongia;
     }
+    public SP_DTO(String masp, int sl, int dongia) {  
+        this.masp = masp;
+        this.sl = sl;
+        this.dongia = dongia;
+    }
 
-    public SP_DTO(String masp, String tensp, int sl, int dongia) {  //Hóa đơn
+    public SP_DTO(String masp, String tensp, int sl, int dongia) {  
         this.masp = masp;
         this.tensp = tensp;
         this.sl = sl;
         this.dongia = dongia;
     }
-    public SP_DTO(String masp, String tensp, int dongia) {  //Hóa đơn
+    public SP_DTO(String masp, String tensp, int dongia) {  
         this.masp = masp;
         this.tensp = tensp;
     

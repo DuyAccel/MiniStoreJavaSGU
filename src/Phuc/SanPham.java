@@ -1,9 +1,11 @@
 package Phuc;
 
 import BLL.SP_BLL;
+import DTO.NV_DTO;
 import DTO.SP_DTO;
 import Function.GUI;
 import GUI.Items.ButtonCustomed;
+import GUI.Items.NewOrder;
 
 import java.util.Hashtable;
 
@@ -27,7 +29,9 @@ public class SanPham extends javax.swing.JPanel {
     private SP_BLL spbll;
     private static int i=0;
     private SP_DTO spdto;
-    public SanPham() {
+    private NV_DTO user;
+    public SanPham(NV_DTO user) {
+        this.user = user;
         initComponents();
     }
 
@@ -444,27 +448,27 @@ public class SanPham extends javax.swing.JPanel {
         DefaultTableModel models = (DefaultTableModel)tb.getModel(); 
         try
         {
-            spbll=new SP_BLL();
-            MASP=tf1.getText();
-            Name=tf2.getText();
-            sl=Integer.parseInt(tf3.getText());
-            gia=Integer.parseInt(tf4.getText());
-            Loai= InpType.get(String.valueOf(cbx.getSelectedItem()));
+            // spbll=new SP_BLL();
+            // MASP=tf1.getText();
+            // Name=tf2.getText();
+            // sl=Integer.parseInt(tf3.getText());
+            // gia=Integer.parseInt(tf4.getText());
+            // Loai= InpType.get(String.valueOf(cbx.getSelectedItem()));
 
-            System.out.println(Loai);
+            // System.out.println(Loai);
 
-            MANCC=tf6.getText();      
-            spdto=new SP_DTO(MASP,Name,sl,gia,Loai,MANCC);
-            spbll.Add(spdto);
-            tb.setValueAt(MASP, i,0);
-            tb.setValueAt(Name, i,1);
-            tb.setValueAt(sl, i,2);
-            tb.setValueAt(gia, i,3);
-            tb.setValueAt(spdto.getLoaiVN(), i,4);
-            tb.setValueAt(MANCC, i,5);
-            models.addRow(new Object[] {});
-            i++;               
-            //Thao tác thêm trên SQL
+            // MANCC=tf6.getText();      
+            // spdto=new SP_DTO(MASP,Name,sl,gia,Loai,MANCC);
+            // spbll.Add(spdto);
+            // tb.setValueAt(MASP, i,0);
+            // tb.setValueAt(Name, i,1);
+            // tb.setValueAt(sl, i,2);
+            // tb.setValueAt(gia, i,3);
+            // tb.setValueAt(spdto.getLoaiVN(), i,4);
+            // tb.setValueAt(MANCC, i,5);
+            // models.addRow(new Object[] {});
+            // i++;      
+            NewOrder order = new NewOrder(user);
         }
         catch (NumberFormatException ne)
         {

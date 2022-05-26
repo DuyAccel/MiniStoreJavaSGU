@@ -49,11 +49,11 @@ public class HD_DAO {
         }
         return conn;
     }
-    public void Edit(HD_DTO hhdto, String selectedid)
+    public void Edit(HD_DTO hddto, String selectedid)
     { 
         Connection conn = getConnection(URL, User, Password);
         try {
-                Statement stmt = conn.createStatement();     //Cập nhật trên database
+                Statement stmt = conn.createStatement();     
                 stmt.executeUpdate("UPDATE HOADON SET MAHD='"+hddto.getMahd()+"', NGAYXUAT='"+hddto.getNgxuat()+"', MANV='"+hddto.getManv()+"', TONGTIEN='"+hddto.getTongtien()+"' WHERE MAHD='"+selectedid+"' ");    //Thực hiện cập nhật row khi ID trong csdl trùng với ID của hàng được chọn
         
                 conn.close();
@@ -141,10 +141,12 @@ public class HD_DAO {
         Connection conn = getConnection(URL, User, Password);
         try {
             Statement stmt = conn.createStatement();  
-            stmt.executeUpdate("INSERT INTO HOADON VALUES('"+hoadon.getMahd()+"','"+hoadon.getNgxuat()+"','"+hoadon.getManv()+"','"+hoadon.getTongtien()+"','"+0+"')");    //Thực hiện điền data vào bảng có khóa chính trước
+            stmt.executeUpdate("INSERT INTO HOADON VALUES('"+hoadon.getMahd()+"','"+hoadon.getNgxuat()+"','"
+            +hoadon.getManv()+"','"+hoadon.getTongtien()+"','"+0+"')");    
             
             for (CTHD_DTO sp : details) {
-                stmt.executeUpdate("INSERT INTO cthd VALUES('"+sp.getMahd()+"','"+sp.getMasp()+"','"+sp.getSoluong()+"','"+sp.getMakm()  +"','"+sp.getTotal()+"')"); 
+                stmt.executeUpdate("INSERT INTO cthd VALUES('"+sp.getMahd()+"','"+sp.getMasp()+"','"+sp.getSoluong()
+                +"','"+sp.getMakm()  +"','"+sp.getTotal()+"')"); 
                 stmt.executeUpdate("UPDATE SANPHAM SET SL=SL-'"+sp.getSoluong()+"' WHERE MASP='"+sp.getMasp()+"'"); 
             }                          
             conn.close();

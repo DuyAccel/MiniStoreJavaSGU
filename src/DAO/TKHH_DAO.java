@@ -48,9 +48,11 @@ public class TKHH_DAO {
         try {
             Connection conn = getConnection(URL, User, Password);
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT SANPHAM.MASP, TENSP, LOAI, SUM(CTHD.SL), SANPHAM.SL - SUM(CTHD.SL)"+
-                    "FROM CTHD, SANPHAM WHERE CTHD.MASP = SANPHAM.MASP and ISDELETED='"+0+"' GROUP BY SANPHAM.MASP, TENSP, LOAI, SANPHAM.SL");
-           while(rs.next())
+            // ResultSet rs = stmt.executeQuery("SELECT SANPHAM.MASP, TENSP, LOAI, SUM(CTHD.SL), SANPHAM.SL - SUM(CTHD.SL)"+
+            //         "FROM CTHD, SANPHAM WHERE CTHD.MASP = SANPHAM.MASP and ISDELETED='"+0+"' GROUP BY SANPHAM.MASP, TENSP, LOAI, SANPHAM.SL");
+            ResultSet rs = stmt.executeQuery("SELECT SANPHAM.MASP, TENSP, LOAI, SUM(CTHD.SL), SANPHAM.SL "+
+                        "FROM SANPHAM left join cthd on CTHD.MASP = SANPHAM.MASP and ISDELETED='"+0+"' GROUP BY SANPHAM.MASP, TENSP, LOAI, SANPHAM.SL");
+            while(rs.next())
             {
                 MASP=rs.getString(1);
                 Ten=rs.getString(2);

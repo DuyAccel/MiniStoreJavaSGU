@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.plaf.DimensionUIResource;
 
+import DTO.NV_DTO;
 import GUI.Items.Divider;
 import GUI.Items.MyScrollBar;
 import Phuc.SanPham;
@@ -13,9 +14,10 @@ import Phuc.ThongKeHang;
 
 public class PanelStorage extends JScrollPane {
     private ThongKeHang statistic = new ThongKeHang();
-    private SanPham product = new SanPham();
+    private SanPham product;
     private JPanel container = new JPanel();
-    public PanelStorage(int width, int height){
+    public PanelStorage(int width, int height, NV_DTO user){
+        product = new SanPham(user);
         setup();
         setPreferredSize(new DimensionUIResource(width, height));
     }

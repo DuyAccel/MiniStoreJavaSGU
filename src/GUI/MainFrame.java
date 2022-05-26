@@ -24,7 +24,6 @@ public class MainFrame extends JFrame{
     private MyEvent event;
 
     private PanelContact contact = new PanelContact();
-    private PanelStatistic statstic;
     private PanelStorage storage;
     private HoaDon hoaDon;
 
@@ -42,8 +41,7 @@ public class MainFrame extends JFrame{
 
     public void initPanel(NV_DTO user){
         this.user = user;
-        storage = new PanelStorage(Main.getWidth(), Main.getHeight());
-        statstic = new PanelStatistic();
+        storage = new PanelStorage(Main.getWidth(), Main.getHeight(), user);
         hoaDon = new HoaDon(user);
         Manager = new PanelManger(user);
         Main.setLayout(new GridLayout(1,1));

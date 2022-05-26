@@ -1,17 +1,19 @@
 
 package DTO;
 
-public class DN_DTO {
+public class DonNhan_DTO {
     private String madn, ngnhan, manv;
-    private int tong, dot;
+    private int tong;
 
-    public DN_DTO(String madn, String ngnhan, String manv,  int tong, int dot) {
+    public DonNhan_DTO(String madn, String ngnhan, String manv,  int tong) {
         this.madn = madn;
         this.ngnhan = ngnhan;
         this.manv = manv;
-
         this.tong = tong;
-        this.dot = dot;
+    }
+    public DonNhan_DTO(String madn, String manv) {
+        this.madn = madn;
+        this.manv = manv;
     }
 
     
@@ -32,9 +34,6 @@ public class DN_DTO {
         return tong;
     }
 
-    public int getDot() {
-        return dot;
-    }
 
     public void setMadn(String madn) {
         this.madn = madn;
@@ -54,8 +53,5 @@ public class DN_DTO {
         this.tong = tong;
     }
 
-    public void setDot(int dot) {
-        this.dot = dot;
-    }
 
 }
