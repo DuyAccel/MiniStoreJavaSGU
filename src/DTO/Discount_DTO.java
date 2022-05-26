@@ -9,6 +9,7 @@ public class Discount_DTO {
     public Discount_DTO(String ID, String NHL){
         this.ID = ID;
         this.NHL = NHL;
+    }public Discount_DTO(){
     }
     public String getID() {
         return ID;

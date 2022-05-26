@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import BLL.CTKM_BLL;
+import DTO.CTKM_DTO;
 import DTO.Discount_DTO;
 
 public class Discount_DAO {
@@ -70,5 +71,33 @@ public class Discount_DAO {
             e.printStackTrace();
         }
         return discount;
+    }
+
+    public int getNewID(){
+        int id = 0;
+        conn = getConnection(URL, User, Password);
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from khuyenmai");
+            while (rs.next()) {
+                id++;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+
+    public void saveData(Discount_DTO KM, ArrayList<CTKM_DTO> ctkm){
+        conn = getConnection(URL, User, Password);
+        try {
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate("insert into khuyenmai values('" +KM.getID()+ "', '" + KM.getNHL() + "', 0)");
+            for (CTKM_DTO row : ctkm) {
+                stmt.executeUpdate("insert into ctkm values('" +KM.getID()+ "', '" + row.getMASP() + "', "+ row.getGIAM() +")");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

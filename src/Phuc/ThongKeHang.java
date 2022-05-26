@@ -5,6 +5,9 @@
 package Phuc;
 
 import BLL.TKHH_BLL;
+import GUI.Items.ButtonCustomed;
+
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -31,13 +34,34 @@ public class ThongKeHang extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable() {
+            @Override
+            public boolean editCellAt(int row, int column) {
+                return false;
+            };
+
+            @Override
+            public boolean editCellAt(int row, int column, java.util.EventObject e) {
+                return false;
+            };
+        };
+        jTable1.getTableHeader().setReorderingAllowed(false);
+        
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txt = new javax.swing.JTextField();
-        search = new javax.swing.JButton();
-        bt1 = new javax.swing.JButton();
-        bt2 = new javax.swing.JButton();
+        search = new ButtonCustomed();
+        bt1 = new ButtonCustomed();
+        bt2 = new ButtonCustomed();
+
+        
+        bt1.setBackground(new ColorUIResource(116, 47, 158));
+        bt2.setBackground(new ColorUIResource(116, 47, 158));
+        search.setBackground(new ColorUIResource(116, 47, 158));
+
+        bt1.setColorHover(new ColorUIResource(181, 113, 209));
+        bt2.setColorHover(new ColorUIResource(181, 113, 209));
+        search.setColorHover(new ColorUIResource(181, 113, 209));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -164,13 +188,13 @@ public class ThongKeHang extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bt1;
-    private javax.swing.JButton bt2;
+    private ButtonCustomed bt1;
+    private ButtonCustomed bt2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JButton search;
+    private ButtonCustomed search;
     private javax.swing.JTextField txt;
     // End of variables declaration//GEN-END:variables
 }

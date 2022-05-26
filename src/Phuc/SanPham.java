@@ -44,7 +44,18 @@ public class SanPham extends javax.swing.JPanel {
         GUI gui = new GUI();        
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tb = new javax.swing.JTable();
+        tb = new javax.swing.JTable(){
+            @Override
+            public boolean editCellAt(int row, int column) {
+                return false;
+            };
+
+            @Override
+            public boolean editCellAt(int row, int column, java.util.EventObject e) {
+                return false;
+            };
+        };
+        tb.getTableHeader().setReorderingAllowed(false);
         lb0 = new javax.swing.JLabel();
         lb1 = new javax.swing.JLabel();
         lb2 = new javax.swing.JLabel();

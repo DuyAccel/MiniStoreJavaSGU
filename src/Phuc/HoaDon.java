@@ -49,7 +49,18 @@ public class HoaDon extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tb = new javax.swing.JTable();
+        tb = new javax.swing.JTable(){
+            @Override
+            public boolean editCellAt(int row, int column) {
+                return false;
+            };
+
+            @Override
+            public boolean editCellAt(int row, int column, java.util.EventObject e) {
+                return false;
+            };
+        };
+        tb.getTableHeader().setReorderingAllowed(false);
         jLabel1 = new javax.swing.JLabel();
         lb2 = new javax.swing.JLabel();
         tf1 = new javax.swing.JTextField();
