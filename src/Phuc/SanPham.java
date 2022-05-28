@@ -5,6 +5,7 @@ import DTO.NV_DTO;
 import DTO.SP_DTO;
 import Function.GUI;
 import GUI.Items.ButtonCustomed;
+import GUI.Items.MyTable;
 import GUI.Items.NewOrder;
 
 import java.util.Hashtable;
@@ -33,15 +34,17 @@ public class SanPham extends javax.swing.JPanel {
     public SanPham(NV_DTO user) {
         this.user = user;
         initComponents();
+        bt2ActionPerformed();
     }
 
     private Hashtable <String, String> InpType = new Hashtable<>();
     
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    MyTable inputTable = new MyTable(0);
+    
     private void initComponents() {
 
         GUI gui = new GUI();        
+
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tb = new javax.swing.JTable(){
@@ -207,7 +210,7 @@ public class SanPham extends javax.swing.JPanel {
         bt2.setIcon(gui.getImg("look.png"));
         bt2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt2ActionPerformed(evt);
+                bt2ActionPerformed();
             }
         });
 
@@ -488,7 +491,7 @@ public class SanPham extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_bt1ActionPerformed
 
-    private void bt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt2ActionPerformed
+    private void bt2ActionPerformed() {//GEN-FIRST:event_bt2ActionPerformed
         spbll=new SP_BLL();
         DefaultTableModel models = (DefaultTableModel)tb.getModel();
         for(int i=0;i<spbll.View().size();i++)

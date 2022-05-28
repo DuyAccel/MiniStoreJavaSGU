@@ -37,6 +37,7 @@ public class Statistic_DAO {
             while (rs.next()) {
                 incomes.add(new Statistic_DTO(rs.getString(1), rs.getInt(2), rs.getInt(3)));
             }
+            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -52,6 +53,7 @@ public class Statistic_DAO {
             while (rs.next()) {
                 incomes.add(new Statistic_DTO(rs.getString(1), rs.getInt(2), rs.getInt(3)));
             }
+            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -63,6 +65,7 @@ public class Statistic_DAO {
         try {
             Statement stmt = conn.createStatement();
             stmt.executeUpdate("insert into doanhthu values('"+data.getDate()+"', "+data.getIncome()+", "+data.getSold()+")");
+            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -76,6 +79,8 @@ public class Statistic_DAO {
             ResultSet rs = stmt.executeQuery("select TOP 1 * from doanhthu ORDER BY thoigian DESC");
             if (rs.next())
                 data = new Statistic_DTO(rs.getString(1), rs.getInt(2), rs.getInt(3));
+
+            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -87,8 +92,22 @@ public class Statistic_DAO {
         try {
             Statement stmt = conn.createStatement();
             stmt.executeUpdate("update doanhthu set doanhthu = doanhthu + "+income+" , banduoc = banduoc +"+ sold +" where thoigian = '"+date+"'");
+        
+            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+    
+    public void decData(String date, int income, int sold){
+        Connection conn = getConnection();
+        try {
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate("update doanhthu set doanhthu = doanhthu - "+ income +" , banduoc = banduoc - " + sold + "  where thoigian = '"+date+"'");
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
 }

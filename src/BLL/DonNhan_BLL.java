@@ -47,5 +47,26 @@ public class DonNhan_BLL {
             }
         }
     }
+
+    public ArrayList<DonNhan_DTO> filterDate(String date){
+        return (new DonNhan_DAO().getDateFilter(date));
+    }
+
+    public ArrayList<DonNhan_DTO> filterID(String id){
+        return (new DonNhan_DAO().getIDFilter(id));
+    }
+    
+    public void deleteData(String ID){
+        new DonNhan_DAO().delData(ID);
+    }
+
+    public DonNhan_DTO getData(String ID){
+        return (new DonNhan_DAO().getData(ID));
+    }
+
+    public void updateData(DonNhan_DTO order){
+        new DonNhan_DAO().updateData(order);
+    }
+
     
 }

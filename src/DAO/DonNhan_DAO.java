@@ -62,7 +62,7 @@ public class DonNhan_DAO {
         try 
         {    
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * from DONNHAN");
+            ResultSet rs = stmt.executeQuery("Select * from DONNHAN where isdeleted = 0");
             while(rs.next())
             {
                madon=rs.getString(1);
@@ -87,9 +87,80 @@ public class DonNhan_DAO {
             while(rs.next()){
                 count++;
             }
+        conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return count;
+    }
+
+    public ArrayList<DonNhan_DTO> getDateFilter(String Date){
+        Connection conn = getConnection(URL, User, Password);
+        ArrayList<DonNhan_DTO> inputs = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from donnhan where ngnhan like '%" + Date + "%' and isdeleted = 0");
+            while (rs.next()) {
+                inputs.add(new DonNhan_DTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4)));
+            }
+            conn.close();   
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return inputs;
+    }
+    public ArrayList<DonNhan_DTO> getIDFilter(String ID){
+        Connection conn = getConnection(URL, User, Password);
+        ArrayList<DonNhan_DTO> inputs = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from donnhan where madn = '" + ID + "' and isdeleted = 0");
+            if (rs.next()) {
+                inputs.add(new DonNhan_DTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4)));
+            }
+            conn.close();   
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return inputs;
+    }
+
+    public ArrayList<DonNhan_DTO> delData(String ID){
+        Connection conn = getConnection(URL, User, Password);
+        ArrayList<DonNhan_DTO> inputs = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate("update donnhan set isdeleted = 1 where madn = '"+ID+"'");
+            conn.close();   
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return inputs;
+    }
+
+    public DonNhan_DTO getData(String ID){
+        Connection conn = getConnection(URL, User, Password);
+        DonNhan_DTO data = null;
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from donnhan where isdeleted = 0 and madn = '"+ID+"'");
+            if (rs.next()){
+                data = new DonNhan_DTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+            }
+            conn.close();   
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
+
+    public void updateData(DonNhan_DTO order){
+        Connection conn = getConnection(URL, User, Password);
+        try {
+            Statement  stmt = conn.createStatement();
+            stmt.executeUpdate("update donnhan set tong = "+order.getTong()+" where madn = '"+order.getMadn()+"'");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

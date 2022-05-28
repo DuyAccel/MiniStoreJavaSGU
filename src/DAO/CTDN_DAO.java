@@ -2,7 +2,10 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+
 
 import DTO.CTDN_DTO;
 
@@ -57,4 +60,50 @@ public class CTDN_DAO {
              ex.printStackTrace();
          } 
      }
+
+    public ArrayList<CTDN_DTO> pullData(String ID){
+        Connection conn = getConnection(URL, User, Password);
+        ArrayList<CTDN_DTO> data = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from ctdn where madn = '"+ID+"'");
+            while (rs.next()) {
+                data.add(new CTDN_DTO(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4)));
+            }
+            conn.close();
+        } catch
+         (Exception e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
+
+    public void preUpdateData(ArrayList<CTDN_DTO> data){
+        Connection conn = getConnection(URL, User, Password);
+        try {
+            Statement stmt = conn.createStatement();
+            for (CTDN_DTO ctdn_DTO : data) {
+                stmt.executeUpdate("update sanpham set sl = sl - "+ctdn_DTO.getSl()+" where masp = '" +ctdn_DTO.getMasp()+"'");
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateData(ArrayList<CTDN_DTO> data, String ID){
+        Connection conn = getConnection(URL, User, Password);
+        try {
+            Statement stmt = conn.createStatement();
+            
+            stmt.executeUpdate("delete from ctdn where madn = '"+ID+"'");
+            for (CTDN_DTO ctdn_DTO : data) {
+                stmt.executeUpdate("insert into ctdn values('"+ID+"', '"+ctdn_DTO.getMasp()+"', "+ctdn_DTO.getSl()+", "+ctdn_DTO.getGia()+") ");
+                stmt.executeUpdate("update sanpham set sl = sl + "+ctdn_DTO.getSl()+" where masp = '" +ctdn_DTO.getMasp()+"'");
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

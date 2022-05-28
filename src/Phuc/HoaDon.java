@@ -10,6 +10,7 @@ import DTO.HD_DTO;
 import DTO.NV_DTO;
 import Function.GUI;
 import GUI.Items.Bill_Details;
+import GUI.Items.Bill_Editing;
 import GUI.Items.ButtonCustomed;
 
 import javax.swing.JFrame;
@@ -329,20 +330,12 @@ public class HoaDon extends javax.swing.JPanel {
 
     private void bt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt2ActionPerformed
         hdbll=new HD_BLL(); 
-        if(tb.getSelectedRowCount()==1)
-       {
-            String selectedID=String.valueOf(tb.getValueAt(tb.getSelectedRow(),0));     //Chọn 1 hàng cần chỉnh sửa
-            tf1.setText(selectedID);
-            String a=tf1.getText();
-            String b=tf2.getText();
-            String c=tf3.getText();
-            int d=Integer.parseInt(tf4.getText());
-            tb.setValueAt(a, tb.getSelectedRow(), 0);       //Cập nhật trên table
-            tb.setValueAt(b, tb.getSelectedRow(), 1);
-            tb.setValueAt(c, tb.getSelectedRow(), 2);
-            tb.setValueAt(d, tb.getSelectedRow(), 3);
-            hddto=new HD_DTO(a,b,c,d);
-            hdbll.Edit(hddto,selectedID);
+        int index = tb.getSelectedRow();
+        if(index != -1)
+       {    
+            String Bill_ID = String.valueOf(tb.getValueAt(index, 0));
+            new Bill_Editing(nv, Bill_ID);
+
         }else if(tb.getSelectedRowCount()==0)
         {
             JFrame fr=new JFrame(); 

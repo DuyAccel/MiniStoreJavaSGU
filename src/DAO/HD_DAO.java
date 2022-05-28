@@ -29,7 +29,7 @@ public class HD_DAO {
     private HD_DTO hddto;
     private String a,b,c;
     private int d;
-    private ArrayList <HD_DTO> listhd =new ArrayList(); 
+    private ArrayList <HD_DTO> listhd =new ArrayList<>(); 
 
     public HD_DAO() {
     }
@@ -49,13 +49,18 @@ public class HD_DAO {
         }
         return conn;
     }
-    public void Edit(HD_DTO hddto, String selectedid)
+    public void Edit(HD_DTO hddto, String selectedid, ArrayList<CTHD_DTO> details)
     { 
         Connection conn = getConnection(URL, User, Password);
         try {
                 Statement stmt = conn.createStatement();     
                 stmt.executeUpdate("UPDATE HOADON SET MAHD='"+hddto.getMahd()+"', NGAYXUAT='"+hddto.getNgxuat()+"', MANV='"+hddto.getManv()+"', TONGTIEN='"+hddto.getTongtien()+"' WHERE MAHD='"+selectedid+"' ");    //Thực hiện cập nhật row khi ID trong csdl trùng với ID của hàng được chọn
         
+                for (CTHD_DTO sp : details) {
+                    stmt.executeUpdate("INSERT INTO cthd VALUES('"+sp.getMahd()+"','"+sp.getMasp()+"','"+sp.getSoluong()
+                    +"','"+sp.getMakm()  +"','"+sp.getTotal()+"')"); 
+                    stmt.executeUpdate("UPDATE SANPHAM SET SL=SL-'"+sp.getSoluong()+"' WHERE MASP='"+sp.getMasp()+"'"); 
+                }
                 conn.close();
             }catch (SQLException ex) {
             Logger.getLogger(HD_DAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -156,4 +161,22 @@ public class HD_DAO {
             JOptionPane.showMessageDialog(fr,"Trùng mã hóa đơn");
         }
     }
+    
+    
+    public HD_DTO getBill(String ID){
+        Connection conn = getConnection(URL, User, Password);
+        HD_DTO bill = null;
+        try {
+            Statement stmt = conn.createStatement();  
+            ResultSet rs = stmt.executeQuery("select * from hoadon where mahd = '" + ID + "' and isdeleted = 0");
+            if (rs.next()){
+                bill = new HD_DTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bill;
+    }
+
+    
 }

@@ -34,10 +34,10 @@ public class HD_BLL {
         hd=new HD_DAO();
        return hd.DESC();
     }
-    public void Edit(HD_DTO hdto, String selectedid)
+    public void Edit(HD_DTO hdto, String selectedid, ArrayList<CTHD_DTO> sp)
     {
         hd=new HD_DAO();
-        hd.Edit(hdto, selectedid);
+        hd.Edit(hdto, selectedid, sp);
     }
     public void Delete(String selectedid)
     {
@@ -47,6 +47,9 @@ public class HD_BLL {
     public void Save(HD_DTO hoadon, ArrayList<CTHD_DTO> sp){
         hd = new HD_DAO();
         hd.Save(hoadon, sp);
+    }
+    public HD_DTO getBil(String ID){
+        return (new HD_DAO().getBill(ID));
     }
     
 }

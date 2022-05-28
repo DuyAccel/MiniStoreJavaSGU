@@ -36,43 +36,43 @@ import Phuc.Time;
 
 public class Bill_Details extends JFrame{
 
-    private JFrame frame;
-    private NV_DTO worker;
-    private HD_DTO Bill;
-    private ArrayList<CTHD_DTO> details = new ArrayList<>();
-    private ArrayList<SP_DTO> products = new ArrayList<>();
-    private int Total_Price = 0;
-    private int Final_Price = 0;
+    protected JFrame frame;
+    protected NV_DTO worker;
+    protected HD_DTO Bill;
+    protected ArrayList<CTHD_DTO> details = new ArrayList<>();
+    protected ArrayList<SP_DTO> products = new ArrayList<>();
+    protected int Total_Price = 0;
+    protected int Final_Price = 0;
     protected GUI gui = new GUI();
-    private ITextPDF exportPDF = new ITextPDF();
+    protected ITextPDF exportPDF = new ITextPDF();
 
-    private JPanel Panel_Input = new JPanel();
-    private JPanel Panel_Manger = new JPanel();
-    private JPanel Panel_Product = new JPanel();
+    protected JPanel Panel_Input = new JPanel();
+    protected JPanel Panel_Manger = new JPanel();
+    protected JPanel Panel_Product = new JPanel();
 
-    private JTextField txtf_bill_id = new JTextField();
-    private JTextField txtf_worker_id = new JTextField();
-    private JTextField txtf_TotalPrice = new JTextField();
-    private JTextField txtf_ProductID = new JTextField();
-    private JTextField txtf_ProductQuantity = new JTextField();
-    private JTextField txtf_Received = new JTextField();
-    private JTextField txtf_Remainder = new JTextField();
-    private JTextField txtf_FinalPrice = new JTextField();
-    private JTextField txtf_SetQuantiy = new JTextField();
+    protected JTextField txtf_bill_id = new JTextField();
+    protected JTextField txtf_worker_id = new JTextField();
+    protected JTextField txtf_TotalPrice = new JTextField();
+    protected JTextField txtf_ProductID = new JTextField();
+    protected JTextField txtf_ProductQuantity = new JTextField();
+    protected JTextField txtf_Received = new JTextField();
+    protected JTextField txtf_Remainder = new JTextField();
+    protected JTextField txtf_FinalPrice = new JTextField();
+    protected JTextField txtf_SetQuantiy = new JTextField();
 
-    private JLabel jlb_bill_id = new JLabel("Mã hóa đơn");
-    private JLabel jlb_worker_id = new JLabel("Mã nhân viên");
-    private JLabel jlb_TotalPrice = new JLabel("Tổng Tiền");
-    private JLabel jlb_ProductID = new JLabel("Mã sản phẩm");
-    private JLabel jlb_ProductQuantity = new JLabel("Số lượng");
-    private JLabel jlb_Received = new JLabel("Đã nhận");
-    private JLabel jlb_Remainder = new JLabel("Thối lại");
-    private JLabel jlb_Diveder_Bill = new JLabel("Hóa đơn:");
-    private JLabel jlb_Diveder_Product = new JLabel("Số lượng sản phẩm:");
-    private JLabel jlb_FinalPrice = new JLabel("Thành tiền");
-    private JLabel jlb_Product = new JLabel("Thao tác trên hóa đơn:");
+    protected JLabel jlb_bill_id = new JLabel("Mã hóa đơn");
+    protected JLabel jlb_worker_id = new JLabel("Mã nhân viên");
+    protected JLabel jlb_TotalPrice = new JLabel("Tổng Tiền");
+    protected JLabel jlb_ProductID = new JLabel("Mã sản phẩm");
+    protected JLabel jlb_ProductQuantity = new JLabel("Số lượng");
+    protected JLabel jlb_Received = new JLabel("Đã nhận");
+    protected JLabel jlb_Remainder = new JLabel("Thối lại");
+    protected JLabel jlb_Diveder_Bill = new JLabel("Hóa đơn:");
+    protected JLabel jlb_Diveder_Product = new JLabel("Số lượng sản phẩm:");
+    protected JLabel jlb_FinalPrice = new JLabel("Thành tiền");
+    protected JLabel jlb_Product = new JLabel("Thao tác trên hóa đơn:");
     
-    private JTable table = new JTable(){
+    protected JTable table = new JTable(){
         @Override
         public boolean editCellAt(int row, int column) {
             return false;
@@ -83,17 +83,18 @@ public class Bill_Details extends JFrame{
             return false;
         };
     };
-    private JScrollPane tablePane = new JScrollPane();
+    protected JScrollPane tablePane = new JScrollPane();
 
-    private ButtonCustomed btn_addProduct = new ButtonCustomed("Thêm");
-    private ButtonCustomed btn_rmProduct = new ButtonCustomed("Xóa Sản phẩm");
-    private ButtonCustomed btn_Calculate = new ButtonCustomed("Tính tiền");
-    private ButtonCustomed btn_SaveBill = new ButtonCustomed("Thanh toán");
-    private ButtonCustomed btn_SetQuantity = new ButtonCustomed("Đặt lại");
-    private ButtonCustomed btn_ReInput = new ButtonCustomed("Nhập lại");
+    protected ButtonCustomed btn_addProduct = new ButtonCustomed("Thêm");
+    protected ButtonCustomed btn_rmProduct = new ButtonCustomed("Xóa Sản phẩm");
+    protected ButtonCustomed btn_Calculate = new ButtonCustomed("Tính tiền");
+    protected ButtonCustomed btn_SaveBill = new ButtonCustomed("Thanh toán");
+    protected ButtonCustomed btn_SetQuantity = new ButtonCustomed("Đặt lại");
+    protected ButtonCustomed btn_ReInput = new ButtonCustomed("Nhập lại");
 
     public Bill_Details(NV_DTO worker){
         this.worker = worker;
+        Bill = new HD_DTO("HD"+String.valueOf((new CTHD_BLL()).MAHD()));
         frame = this;
         setSize(750, 550);
         setResizable(false);
@@ -101,8 +102,7 @@ public class Bill_Details extends JFrame{
         setup();
     }
 
-    private void setup(){
-        Bill = new HD_DTO("HD"+String.valueOf((new CTHD_BLL()).MAHD()));
+    protected void setup(){
 
         initPanelInput();
         initPanelProduct();
@@ -158,6 +158,7 @@ public class Bill_Details extends JFrame{
         txtf_bill_id.setText(Bill.getMahd());
         txtf_bill_id.setEditable(false);
         txtf_worker_id.setText(worker.getManv());
+        txtf_worker_id.setEditable(false);
 
         txtf_TotalPrice.setText(Total_Price+"");
         txtf_TotalPrice.setEditable(false);
@@ -421,21 +422,29 @@ public class Bill_Details extends JFrame{
             int price;
             int discount = 0;
             String ProductID = txtf_ProductID.getText();
+            Discount_DTO DsC;
             if (ProductID.equals("")) throw new NullPointerException();
             int ProductQuantity = Integer.parseInt(txtf_ProductQuantity.getText());
             if (ProductQuantity == 0) throw new NumberFormatException();
             
-            if (checkDuplicate(ProductID)) {
-                MyMessageAlert alert = new MyMessageAlert(frame, "Sản phẩm đã tồn tại");
-                alert.setVisible(true);
-                return;
-            }
-
             SP_DTO product = (new SP_BLL()).Find(ProductID);
-            Discount_DTO DsC;
             if (product == null) {
                 return;
             }
+            if (checkDuplicate(ProductID) != -1) {
+                int index = checkDuplicate(ProductID);
+                price = ProductQuantity * product.getDongia();
+                DsC = (new Discount_BLL()).getDiscount(ProductID);
+                if (DsC != null) {
+                    discount = DsC.getDiscount(ProductID);
+                }
+                price -= price * discount;
+                details.get(index).setSoluong(ProductQuantity+details.get(index).getSoluong());
+                details.get(index).setTotal(price+details.get(index).getTotal());
+                rebuildTable();
+                return;
+            }
+
 
             if(product.getSl() < ProductQuantity) {
 
@@ -446,7 +455,6 @@ public class Bill_Details extends JFrame{
             }
 
             price = ProductQuantity * product.getDongia();
-            Total_Price += price;
             DsC = (new Discount_BLL()).getDiscount(ProductID);
             String DiscID = "null";
             if (DsC != null) {
@@ -454,13 +462,10 @@ public class Bill_Details extends JFrame{
                 discount = DsC.getDiscount(ProductID);
             }
             price -= price * discount;
-            Final_Price += price;
             products.add(product);
             details.add(
                     new CTHD_DTO(Bill.getMahd(), ProductID, ProductQuantity, DiscID, price));
 
-            txtf_FinalPrice.setText(Final_Price + "");
-            txtf_TotalPrice.setText(Total_Price + "");
             rebuildTable();
         } catch (NumberFormatException NumbE) { 
             MyMessageAlert alert = new MyMessageAlert(frame, "Số lượng sản phẩm không hợp lệ");
@@ -576,15 +581,15 @@ public class Bill_Details extends JFrame{
         txtf_TotalPrice.setText("0");
     }
 
-    private boolean checkDuplicate(String ProductID){
-        for (SP_DTO product : products) {
-            if (product.getMasp().equals(ProductID))
-                return true;
+    protected int checkDuplicate(String ProductID){
+        for (int i = 0; i< products.size(); i++) {
+            if (products.get(i).getMasp().equals(ProductID))
+                return i;
         }
-        return false;
+        return -1;
     }
 
-    private void rebuildTable(){
+    protected void rebuildTable(){
         DefaultTableModel model = new DefaultTableModel(
             new Object [][] {
             },
@@ -592,12 +597,18 @@ public class Bill_Details extends JFrame{
                 "Mã", "Tên", "Số Lượng", "Đơn giá", "Tổng tiền", "Thành tiền"
             }
         );
+        Total_Price = 0;
+        Final_Price = 0;
         table.setModel(model);
         for (int i = 0; i < details.size(); i++) {
             
             model.addRow(new Object[]{ details.get(i).getMasp(), products.get(i).getTensp(), details.get(i).getSoluong(),
                          products.get(i).getDongia(), (details.get(i).getSoluong()*products.get(i).getDongia()), details.get(i).getTotal() });
-            
+            Total_Price += (details.get(i).getSoluong()*products.get(i).getDongia());
+            Final_Price += details.get(i).getTotal();
         }
+        txtf_FinalPrice.setText(Final_Price+"");
+        txtf_TotalPrice.setText(Total_Price+"");
+
     }
 }

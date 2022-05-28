@@ -8,8 +8,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import DTO.CTHD_DTO;
 
 /**
  *
@@ -54,6 +57,34 @@ public class CTHD_DAO {
         } 
        return mahd;
     }
+
+    public ArrayList<CTHD_DTO> getDetails(String Bill_ID){
+        Connection conn = getConnection(URL, User, Password);
+        ArrayList<CTHD_DTO> details = new ArrayList<>();
+       try {
+            Statement stmt = conn.createStatement();
+
+            ResultSet rs=stmt.executeQuery("Select * from cthd where mahd = '"+ Bill_ID +"'");
+            while(rs.next())
+            {
+                details.add(new CTHD_DTO(Bill_ID, rs.getString(2), rs.getInt(3), rs.getString(4), rs.getInt(5)));
+                System.out.println(Bill_ID);
+            }           
+            conn.close();
+       }catch (SQLException ex) {
+            Logger.getLogger(CTHD_DAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+       return details;
+    }
     
-    
+    public void deleteDetails(String Bill_ID){
+        Connection conn = getConnection(URL, User, Password);
+        try {
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate("delete from cthd where mahd = '"+ Bill_ID +"'");
+            conn.close();
+       }catch (SQLException ex) {
+            Logger.getLogger(CTHD_DAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
 }

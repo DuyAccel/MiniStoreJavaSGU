@@ -29,10 +29,10 @@ import Function.GUI;
 public class NewOrder extends JFrame{
 
     private JFrame frame;
-    private DonNhan_DTO Order;
+    protected DonNhan_DTO Order;
     private NV_DTO worker;
-    private ArrayList<CTDN_DTO> orderDetails = new ArrayList<>();
-    private int Total_Price = 0;
+    protected ArrayList<CTDN_DTO> orderDetails = new ArrayList<>();
+    protected int Total_Price = 0;
     protected GUI gui = new GUI();
 
     private JPanel Panel_Input = new JPanel();
@@ -50,7 +50,6 @@ public class NewOrder extends JFrame{
     private JTextField txtf_SetQuantiy = new JTextField();
 
     private JLabel jlb_order_id = new JLabel("Mã đơn nhận");
-    //private JLabel jlb_type = new JLabel("Loại SP");
     private JLabel jlb_ProductID = new JLabel("Mã sản phẩm");
     private JLabel jlb_ProductID1 = new JLabel("Mã sản phẩm");
     private JLabel jlb_ProductQuantity = new JLabel("Số lượng");
@@ -75,12 +74,12 @@ public class NewOrder extends JFrame{
         };
     };
 
-    private JScrollPane tablePane = new JScrollPane();
-    private ButtonCustomed btn_addProduct = new ButtonCustomed("Thêm");
-    private ButtonCustomed btn_rmProduct = new ButtonCustomed("Xóa");
-    private ButtonCustomed btn_Save = new ButtonCustomed("Thanh toán");
-    private ButtonCustomed btn_SetQuantity = new ButtonCustomed("Đặt lại");
-    private ButtonCustomed btn_ReInput = new ButtonCustomed("Nhập lại");
+    protected JScrollPane tablePane = new JScrollPane();
+    protected ButtonCustomed btn_addProduct = new ButtonCustomed("Thêm");
+    protected ButtonCustomed btn_rmProduct = new ButtonCustomed("Xóa");
+    protected ButtonCustomed btn_Save = new ButtonCustomed("Thanh toán");
+    protected ButtonCustomed btn_SetQuantity = new ButtonCustomed("Đặt lại");
+    protected ButtonCustomed btn_ReInput = new ButtonCustomed("Nhập lại");
 
     public NewOrder(NV_DTO worker){
         this.worker = worker;
@@ -444,7 +443,7 @@ public class NewOrder extends JFrame{
         return false;
     }
 
-    private void rebuildTable(){
+    protected void rebuildTable(){
         DefaultTableModel model = new DefaultTableModel(
             new Object [][] {
             },
@@ -452,12 +451,15 @@ public class NewOrder extends JFrame{
                 "Mã SP", "Số Lượng", "Đơn giá", "Tổng tiền"
             }
         );
+        Total_Price = 0;
         table.setModel(model);
         for (int i = 0; i < orderDetails.size(); i++) {
             
             model.addRow(new Object[]{ orderDetails.get(i).getMasp(), orderDetails.get(i).getSl(),
                          orderDetails.get(i).getGia(), (orderDetails.get(i).getGia()*orderDetails.get(i).getSl())});
+                Total_Price += orderDetails.get(i).getGia()*orderDetails.get(i).getSl();
             
         }
+        txtf_TotalPrice.setText(Total_Price+"");
     }
 }

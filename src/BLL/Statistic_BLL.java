@@ -38,6 +38,8 @@ public class Statistic_BLL {
         return false;
     }
     
-    
+    public void decData(String Date, int Income, int Sold){
+        (new Statistic_DAO()).decData(Date, Income, Sold);
+    }
     
 }
